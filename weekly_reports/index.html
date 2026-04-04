@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekly Report</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Weekly Report</h1>
+      <button id="new-report-btn" class="btn btn-primary">+ New Report</button>
+    </header>
+
+    <main>
+      <!-- Report List View -->
+      <section id="list-view">
+        <div id="report-list" class="report-list">
+          <p class="empty-state">No reports yet. Create your first weekly report.</p>
+        </div>
+      </section>
+
+      <!-- Report Form View -->
+      <section id="form-view" class="hidden">
+        <div class="form-container">
+          <div class="form-header">
+            <h2 id="form-title">New Weekly Report</h2>
+            <button id="back-btn" class="btn btn-secondary">Back</button>
+          </div>
+
+          <form id="report-form">
+            <input type="hidden" id="report-id">
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="week-start">Week Start</label>
+                <input type="date" id="week-start" required>
+              </div>
+              <div class="form-group">
+                <label for="week-end">Week End</label>
+                <input type="date" id="week-end" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="completed">Completed This Week</label>
+              <textarea id="completed" rows="5" placeholder="- Task 1&#10;- Task 2&#10;- Task 3"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="planned">Planned for Next Week</label>
+              <textarea id="planned" rows="5" placeholder="- Task 1&#10;- Task 2&#10;- Task 3"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="blockers">Blockers / Issues</label>
+              <textarea id="blockers" rows="3" placeholder="Any blockers or issues to flag..."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="notes">Additional Notes</label>
+              <textarea id="notes" rows="3" placeholder="Other notes or comments..."></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" id="delete-btn" class="btn btn-danger hidden">Delete</button>
+              <div class="right-actions">
+                <button type="button" id="export-btn" class="btn btn-secondary hidden">Export</button>
+                <button type="submit" class="btn btn-primary">Save Report</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
