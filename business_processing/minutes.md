@@ -156,3 +156,19 @@ Conversation log between the user and Claude for the business_processing project
 - Budget strategy: start with Aquamarine + Imperial Topaz → add Cat's Eye + Alexandrite → add Paraíba at scale
 
 **Claude:** Created `brazil_gemstone_japan_export_guide.md` and `brazil_gemstone_japan_export_guide.pdf` and pushed to GitHub.
+
+---
+
+**User:** where should I go to buy Imperial Topaz in Brazil?
+
+**Claude:** Provided sourcing guide for Imperial Topaz:
+- **Only source:** Ouro Preto, Minas Gerais — exclusively found here; no other source in the world
+- **In Ouro Preto:** Gem shops on Rua Direita and Praça Tiradentes; mine-affiliated shops in Capão do Lana / Rodrigo Silva districts (~10km from center); annual Feira de Minerais (August)
+- **In Belo Horizonte (~100km):** Mercado de Pedras Preciosas (Rua dos Caetés), Shopping Oiapoque, IBGM-affiliated dealers
+- **In São Paulo (for GIA-certified export-grade):** Rua Direita / Rua do Arouche gem district, Feiga gem fair (annual)
+- **Best colors for Japan export:** Deep orange-red (BRL 800–5,000+/ct) > peachy orange > golden yellow; avoid pale yellow
+- **Tips:** Negotiate 30–50% off asking price; always get nota fiscal; request provenance certificate for stones above BRL 500; avoid blue topaz sold as Imperial
+
+**User:** /init (update CLAUDE.md and minutes.md)
+
+**Claude:** Updated `business_processing/CLAUDE.md` to add `imperial_topaz_sourcing_ouro_preto.md`; updated `minutes.md` with full conversation log.
