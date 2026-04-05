@@ -117,3 +117,18 @@ Conversation log between the user and Claude for the business_processing project
 **User:** would you create pdf file for brazil_coffee_japan_export_guide.md?
 
 **Claude:** Updated `generate_pdf.py` to accept any markdown file as a command-line argument (output PDF uses same base name). Generated `brazil_coffee_japan_export_guide.pdf` and pushed to GitHub.
+
+---
+
+**User:** Please tell me how to become export coffee from Brazil to Japan?
+
+**Claude:** Provided a practical step-by-step guide:
+- **Step 1 (Month 1–2):** Register CNPJ, RADAR (exporter ID), and Cecafé membership for ICO Certificate of Origin
+- **Step 2 (Month 1–3):** Secure coffee supply — own farm, source micro-lots from Mantiqueira de Minas / Chapada Diamantina / Cerrado Mineiro, or trade through cooperatives
+- **Step 3 (Month 2–4):** Hire Q-Grader for SCA cupping report (minimum 84 SCA target); enter Cup of Excellence if eligible
+- **Step 4 (Month 2–6):** Obtain JAS Organic (via USDA equivalence, +15–30% Japan price), Cerrado DO certification, or Rainforest Alliance as appropriate
+- **Step 5 (Month 3–6):** Contact Wataru & Co. or Sucafina Japan (importers, easiest entry); list farm on Algrano; approach Onibus Coffee and Maruyama Coffee directly
+- **Step 6 (Month 4–5):** Send 250g green sample packs to 10–15 Japanese buyers via DHL (budget USD $300–500)
+- **Step 7 (Oct 2026):** Apply to APEX-Brasil for subsidized SCAJ 2026 exhibition (Tokyo Big Sight, Oct 14–17)
+- **Step 8:** Export via Port of Santos with documents: Commercial Invoice, ICO Certificate of Origin, Phytosanitary Certificate (MAPA), SISCOMEX Registro de Exportação, SCA report
+- Japan import duty on green coffee: 0%; transit time: 20–28 days; per FCL gross margin: BRL 140,000–300,000
