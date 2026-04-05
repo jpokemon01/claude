@@ -194,8 +194,8 @@ function formatDate(iso) {
 function formatDateRange(start, end) {
   const s = new Date(start + 'T00:00:00');
   const e = new Date(end + 'T00:00:00');
-  const opts = { month: 'short', day: 'numeric' };
-  return `${s.toLocaleDateString(undefined, opts)} – ${e.toLocaleDateString(undefined, { ...opts, year: 'numeric' })}`;
+  const opts = { year: 'numeric', month: 'short', day: 'numeric' };
+  return `${s.toLocaleDateString(undefined, opts)} – ${e.toLocaleDateString(undefined, opts)}`;
 }
 
 let toastTimer;
