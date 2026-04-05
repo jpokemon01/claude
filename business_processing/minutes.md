@@ -1,24 +1,36 @@
 # Minutes — business_processing
 
-Research log and decision record for the business_processing directory.
+Conversation log between the user and Claude for the business_processing project.
 
 ---
 
 ## 2026-04-05
 
-### Research Completed
-- Investigated end-to-end process for importing Japanese goods (manga, toys, children's clothing) to Brazil
-- Documented tax structure: manga benefits from 0% tax (constitutional book immunity); toys and clothing face ~55–65% effective tax burden
-- Documented INMETRO certification requirements per product category
-- Documented SISCOMEX customs flow and RADAR importer registration
-- Documented labeling requirements in Portuguese and IP considerations for manga
+**User:** would you create depository under CLAUDE for business_processing?
 
-### Decisions
-- **PDF generation:** Used `reportlab` (pure Python) instead of `weasyprint` — weasyprint requires system-level GTK/Pango libraries unavailable on Windows without additional setup
-- **Guide format:** Structured as reference tables + process steps for quick lookup by a business user
+**Claude:** Created `business_processing/` directory.
 
-### Key Findings
-- Manga is the most financially viable import category (0% taxes, no INMETRO required)
-- Toys require per-model INMETRO certification (BRL 8,000–25,000, 3–6 months) — significant barrier for small importers with diverse SKUs
-- First shipment timeline: 5–8 months; ongoing shipments: 65–90 days
-- Recommended freight forwarders: Kintetsu World Express Brasil, Nippon Express do Brasil (both Japanese-owned)
+---
+
+**User:** would you investigate for importing Japanese goods like comics, toys, and children's clothes to Brazil. What kind of tasks are necessary from start to end?
+
+**Claude:** Researched and produced a comprehensive guide covering:
+- Critical path timeline (5–8 months for first shipment)
+- Tax structure by category: manga 0% (constitutional book immunity), toys/clothing ~55–65% of CIF
+- INMETRO certification requirements (toys: Portaria 563/2016 — BRL 8,000–25,000 per model; clothing: Portaria 144/2015)
+- Required documentation (Commercial Invoice, Packing List, B/L, LI, DI/DUIMP, INMETRO cert)
+- SISCOMEX customs flow and RADAR importer registration
+- Portuguese labeling requirements
+- IP considerations for manga (avoid titles with active Brazilian licenses; prohibited: sexual content involving minors)
+- Shipping options (sea freight Santos ~35–45 days; air freight GRU ~3–5 days)
+- Recommended service providers: Kintetsu World Express Brasil, Nippon Express, JETRO São Paulo
+
+**User:** (confirmed to save research as document)
+
+**Claude:** Created `japan_brazil_import_guide.md` in `business_processing/` and pushed to GitHub.
+
+---
+
+**User:** could you make pdf file for japan_brazil_import_guide.md?
+
+**Claude:** Attempted `weasyprint` — failed on Windows (requires GTK/Pango system libraries). Switched to `reportlab`. Created `generate_pdf.py` which parses the markdown and renders styled PDF with tables, headings, and bullet points. Generated `japan_brazil_import_guide.pdf` and pushed both files to GitHub.
