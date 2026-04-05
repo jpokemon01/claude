@@ -4,7 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This repo contains a static weekly report web application deployed on Vercel, backed by Supabase (PostgreSQL).
+This repo contains two sub-projects:
+
+- **`weekly_reports/`** — A static weekly report web application deployed on Vercel, backed by Supabase (PostgreSQL)
+- **`business_processing/`** — Business research and process documentation (not deployed)
 
 ## Deployment
 
