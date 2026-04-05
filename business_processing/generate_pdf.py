@@ -1,4 +1,6 @@
 import re
+import sys
+import os
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import mm
@@ -8,8 +10,12 @@ from reportlab.platypus import (
 )
 from reportlab.lib.enums import TA_LEFT
 
-MD_PATH = r"c:/Users/Takeo Inoue/Documents/GITHUB/claude/business_processing/japan_brazil_import_guide.md"
-PDF_PATH = r"c:/Users/Takeo Inoue/Documents/GITHUB/claude/business_processing/japan_brazil_import_guide.pdf"
+if len(sys.argv) > 1:
+    MD_PATH = sys.argv[1]
+else:
+    MD_PATH = r"c:/Users/Takeo Inoue/Documents/GITHUB/claude/business_processing/japan_brazil_import_guide.md"
+
+PDF_PATH = os.path.splitext(MD_PATH)[0] + ".pdf"
 
 BLUE = colors.HexColor("#2563eb")
 LIGHT_BLUE = colors.HexColor("#eff6ff")
