@@ -1,7 +1,10 @@
-const STORAGE_KEY = 'weekly_reports';
+const SUPABASE_URL = 'https://pujgfojebzyetxypwytg.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB1amdmb2plYnp5ZXR4eXB3eXRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzNDcwOTcsImV4cCI6MjA5MDkyMzA5N30.VaDkMTOy7R6Cbip9hMh1ZmoBtDoAUZckylJCmYD4k4k';
+
+const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // --- State ---
-let reports = loadReports();
+let reports = [];
 
 // --- DOM refs ---
 const listView = document.getElementById('list-view');
@@ -13,8 +16,8 @@ const deleteBtn = document.getElementById('delete-btn');
 const exportBtn = document.getElementById('export-btn');
 
 // --- Init ---
-renderList();
 setupFormDefaults();
+loadReports();
 
 // --- Event listeners ---
 document.getElementById('new-report-btn').addEventListener('click', () => openForm());
@@ -23,24 +26,54 @@ reportForm.addEventListener('submit', saveReport);
 deleteBtn.addEventListener('click', deleteReport);
 exportBtn.addEventListener('click', exportReport);
 
-// --- Storage ---
-function loadReports() {
-  try {
-    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-  } catch {
-    return [];
-  }
+// --- DB helpers ---
+function toRow(r) {
+  return {
+    id: r.id,
+    week_start: r.weekStart,
+    week_end: r.weekEnd,
+    completed: r.completed,
+    planned: r.planned,
+    blockers: r.blockers,
+    notes: r.notes,
+    created_at: r.createdAt,
+    updated_at: r.updatedAt,
+  };
 }
 
-function persistReports() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(reports));
+function fromRow(row) {
+  return {
+    id: row.id,
+    weekStart: row.week_start,
+    weekEnd: row.week_end,
+    completed: row.completed || '',
+    planned: row.planned || '',
+    blockers: row.blockers || '',
+    notes: row.notes || '',
+    createdAt: row.created_at,
+    updatedAt: row.updated_at,
+  };
+}
+
+// --- Load ---
+async function loadReports() {
+  reportList.innerHTML = '<p class="empty-state">Loading...</p>';
+  const { data, error } = await db.from('reports').select('*').order('week_start', { ascending: false });
+  if (error) {
+    showToast('Failed to load reports');
+    console.error(error);
+    reportList.innerHTML = '<p class="empty-state">Failed to load reports.</p>';
+    return;
+  }
+  reports = (data || []).map(fromRow);
+  renderList();
 }
 
 // --- Views ---
 function showView(view) {
   listView.classList.toggle('hidden', view !== 'list');
   formView.classList.toggle('hidden', view !== 'form');
-  if (view === 'list') renderList();
+  if (view === 'list') loadReports();
 }
 
 // --- List ---
@@ -50,8 +83,7 @@ function renderList() {
     return;
   }
 
-  const sorted = [...reports].sort((a, b) => b.weekStart.localeCompare(a.weekStart));
-  reportList.innerHTML = sorted.map(r => {
+  reportList.innerHTML = reports.map(r => {
     const preview = r.completed ? r.completed.split('\n')[0].replace(/^[-*]\s*/, '') : 'No entries';
     return `
       <div class="report-card" data-id="${r.id}">
@@ -110,12 +142,12 @@ function openForm(id) {
   showView('form');
 }
 
-function saveReport(e) {
+async function saveReport(e) {
   e.preventDefault();
   const id = document.getElementById('report-id').value;
   const now = new Date().toISOString();
 
-  const data = {
+  const report = {
     id: id || crypto.randomUUID(),
     weekStart: document.getElementById('week-start').value,
     weekEnd: document.getElementById('week-end').value,
@@ -127,24 +159,29 @@ function saveReport(e) {
     createdAt: id ? (reports.find(r => r.id === id)?.createdAt || now) : now,
   };
 
-  if (id) {
-    const idx = reports.findIndex(r => r.id === id);
-    reports[idx] = data;
-  } else {
-    reports.push(data);
+  const { error } = await db.from('reports').upsert(toRow(report));
+  if (error) {
+    showToast('Failed to save report');
+    console.error(error);
+    return;
   }
 
-  persistReports();
   showToast('Report saved');
   showView('list');
 }
 
-function deleteReport() {
+async function deleteReport() {
   const id = document.getElementById('report-id').value;
   if (!id) return;
   if (!confirm('Delete this report?')) return;
-  reports = reports.filter(r => r.id !== id);
-  persistReports();
+
+  const { error } = await db.from('reports').delete().eq('id', id);
+  if (error) {
+    showToast('Failed to delete report');
+    console.error(error);
+    return;
+  }
+
   showToast('Report deleted');
   showView('list');
 }
@@ -165,12 +202,8 @@ function exportReport() {
     '',
   ];
 
-  if (report.blockers) {
-    lines.push('## Blockers / Issues', report.blockers, '');
-  }
-  if (report.notes) {
-    lines.push('## Notes', report.notes, '');
-  }
+  if (report.blockers) lines.push('## Blockers / Issues', report.blockers, '');
+  if (report.notes) lines.push('## Notes', report.notes, '');
 
   const blob = new Blob([lines.join('\n')], { type: 'text/plain' });
   const url = URL.createObjectURL(blob);
