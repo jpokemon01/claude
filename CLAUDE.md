@@ -14,7 +14,6 @@ This repo contains two sub-projects:
 - Create `CLAUDE.md` for each project directory
 - Create `Skill.md` for each project directory
 - Create `minutes.md` for each project directory — contents are the conversation between Claude and the user
-minutes.md contents are between claude and I conversation. 
 
 ## Deployment
 
