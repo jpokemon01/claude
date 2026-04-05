@@ -172,3 +172,24 @@ Conversation log between the user and Claude for the business_processing project
 **User:** /init (update CLAUDE.md and minutes.md)
 
 **Claude:** Updated `business_processing/CLAUDE.md` to add `imperial_topaz_sourcing_ouro_preto.md`; updated `minutes.md` with full conversation log.
+
+---
+
+**User:** would you create pdf file for imperial_topaz_sourcing_ouro_preto.md?
+
+**Claude:** Generated `imperial_topaz_sourcing_ouro_preto.pdf` and pushed to GitHub.
+
+---
+
+**User:** where should I go to buy Aquamarine (Santa Maria Color) in Brazil?
+
+**Claude:** Provided sourcing guide:
+- **Best place:** Teófilo Otoni — gem trading capital of Brazil, ~70% of Brazil's rough gems pass through here; Rua Antônio Bias Fortes is the main dealer street; 30–60% cheaper than São Paulo
+- **Mining region:** Jequitinhonha Valley (Araçuaí, Coronel Murta, Itinga, Marambaia)
+- **Secondary hub:** Governador Valadares (~200km) — more internationally connected exporters
+- **For faceted/certified:** Belo Horizonte (Mercado de Pedras Preciosas), São Paulo (Rua Direita / Feiga fair)
+- **Color identification:** True Santa Maria = deep electric blue, no green/gray; must stay blue under fluorescent light
+- **Best margin strategy:** Buy rough in Teófilo Otoni → facet in BH → GIA certify → sell in Japan
+- **Prices:** True Santa Maria rough USD $20–80/ct; faceted USD $50–200/ct; Japan sell price ¥10,000–200,000/ct
+
+**Claude:** Created `aquamarine_sourcing_brazil.md` and `aquamarine_sourcing_brazil.pdf` and pushed to GitHub.

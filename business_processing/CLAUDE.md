@@ -15,6 +15,9 @@ Business research and process documentation. Not deployed. Contains guides, anal
 - **`brazil_gemstone_japan_export_guide.md`** — Risk/return analysis for exporting Brazilian gemstones to Japan: aquamarine, Imperial Topaz, Alexandrite, Paraíba Tourmaline, certifications, market entry
 - **`brazil_gemstone_japan_export_guide.pdf`** — PDF version of the above
 - **`imperial_topaz_sourcing_ouro_preto.md`** — Where to buy Imperial Topaz in Brazil: Ouro Preto shops, mines, Belo Horizonte and São Paulo dealers, quality grades, buying tips
+- **`imperial_topaz_sourcing_ouro_preto.pdf`** — PDF version of the above
+- **`aquamarine_sourcing_brazil.md`** — Where to buy Santa Maria color aquamarine in Brazil: Teófilo Otoni (gem capital), Governador Valadares, Belo Horizonte, São Paulo; color grading, price guide, export process
+- **`aquamarine_sourcing_brazil.pdf`** — PDF version of the above
 - **`generate_pdf.py`** — Python script to generate a PDF from any markdown file in this directory
 
 ## Regenerating or Creating PDFs
