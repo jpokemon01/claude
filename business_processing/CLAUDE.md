@@ -18,6 +18,8 @@ Business research and process documentation. Not deployed. Contains guides, anal
 - **`imperial_topaz_sourcing_ouro_preto.pdf`** — PDF version of the above
 - **`aquamarine_sourcing_brazil.md`** — Where to buy Santa Maria color aquamarine in Brazil: Teófilo Otoni (gem capital), Governador Valadares, Belo Horizonte, São Paulo; color grading, price guide, export process
 - **`aquamarine_sourcing_brazil.pdf`** — PDF version of the above
+- **`gemstone_shipping_customs_brazil_japan.md`** — Shipping costs, insurance, Brazil export requirements, Japan import duties, declaration rules, and cost breakdown for gemstone export
+- **`gemstone_shipping_customs_brazil_japan.pdf`** — PDF version of the above
 - **`generate_pdf.py`** — Python script to generate a PDF from any markdown file in this directory
 
 ## Regenerating or Creating PDFs

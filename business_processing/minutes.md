@@ -193,3 +193,19 @@ Conversation log between the user and Claude for the business_processing project
 - **Prices:** True Santa Maria rough USD $20–80/ct; faceted USD $50–200/ct; Japan sell price ¥10,000–200,000/ct
 
 **Claude:** Created `aquamarine_sourcing_brazil.md` and `aquamarine_sourcing_brazil.pdf` and pushed to GitHub.
+
+---
+
+**User:** what is the cost of bring gemstone from Brazil to Japan? Do I proclaim these?
+
+**Claude:** Provided shipping, customs, and declaration guide:
+- **Shipping:** DHL Express (USD $50–200, 3–5 days) standard; Malca-Amit/Brinks for high-value lots (Paraíba, Alexandrite)
+- **Insurance:** 1–2.5% of declared value — always required
+- **Japan import duty:** 0% on loose gemstones (rough or faceted); 5.3% only on finished jewelry
+- **Japan consumption tax:** 10% paid by buyer at customs
+- **Brazil:** Must declare at departure if carrying personally; SISCOMEX export registration required for commercial exports above USD $1,000; always get nota fiscal
+- **Japan:** Must declare if carrying goods worth more than ¥200,000 (~USD 1,300)
+- **Total cost example (USD $5,000 aquamarine via DHL):** ~USD $200–500 all-in (~4–10% of goods value) — very low vs. other export categories
+- **Two methods:** Ship commercially (recommended for business, clean paper trail) or carry personally (practical under USD $10,000–20,000)
+
+**Claude:** Created `gemstone_shipping_customs_brazil_japan.md` and `gemstone_shipping_customs_brazil_japan.pdf` and pushed to GitHub.
