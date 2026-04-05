@@ -132,3 +132,27 @@ Conversation log between the user and Claude for the business_processing project
 - **Step 7 (Oct 2026):** Apply to APEX-Brasil for subsidized SCAJ 2026 exhibition (Tokyo Big Sight, Oct 14–17)
 - **Step 8:** Export via Port of Santos with documents: Commercial Invoice, ICO Certificate of Origin, Phytosanitary Certificate (MAPA), SISCOMEX Registro de Exportação, SCA report
 - Japan import duty on green coffee: 0%; transit time: 20–28 days; per FCL gross margin: BRL 140,000–300,000
+
+---
+
+**User:** what gemstone will be profitable to export from Brazil to Japan?
+
+**Claude:** Provided full gemstone analysis covering all tiers:
+- Tier 1 (highest value): Paraíba Tourmaline (¥500,000–5,000,000+/ct, GRS cert essential), Alexandrite (¥200,000–2,000,000+/ct, color change drives Japan demand), Imperial Topaz (¥50,000–500,000/ct, exclusive to Ouro Preto)
+- Tier 2: Aquamarine Santa Maria, Rubellite, Chrome Green Tourmaline, Morganite, Cat's Eye Chrysoberyl
+- Tier 3 (volume): Amethyst, Citrine Madeira, Blue Topaz
+- Raw specimens for collector market: geodes, crystals on matrix — no cutting cost
+- Entry channel: Tokyo International Mineral Fair (Shinjuku, June)
+
+---
+
+**User:** which gemstone has low risk high return?
+
+**Claude:** Risk/return analysis:
+- **#1 recommendation:** Aquamarine (Santa Maria color) — lowest risk, reliable supply, 5–10x premium for deep blue grade, year-round demand, no complex certification
+- **#2:** Imperial Topaz — only found in Ouro Preto, zero international competition, provenance story self-evident
+- **#3:** Cat's Eye Chrysoberyl — superstition-driven demand in Japan (considered lucky), strong chatoyancy easy to evaluate
+- Paraíba and Alexandrite = highest return but highest risk (supply scarcity, GRS cert essential for Paraíba, color change quality critical for Alexandrite)
+- Budget strategy: start with Aquamarine + Imperial Topaz → add Cat's Eye + Alexandrite → add Paraíba at scale
+
+**Claude:** Created `brazil_gemstone_japan_export_guide.md` and `brazil_gemstone_japan_export_guide.pdf` and pushed to GitHub.

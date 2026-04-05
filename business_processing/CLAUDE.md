@@ -12,6 +12,8 @@ Business research and process documentation. Not deployed. Contains guides, anal
 - **`japan_brazil_import_guide.pdf`** — PDF version of the above
 - **`brazil_coffee_japan_export_guide.md`** — Comprehensive guide for exporting Brazilian specialty coffee to Japan: regions, varieties, processing methods, buyers, pricing, logistics, margins
 - **`brazil_coffee_japan_export_guide.pdf`** — PDF version of the above
+- **`brazil_gemstone_japan_export_guide.md`** — Risk/return analysis for exporting Brazilian gemstones to Japan: aquamarine, Imperial Topaz, Alexandrite, Paraíba Tourmaline, certifications, market entry
+- **`brazil_gemstone_japan_export_guide.pdf`** — PDF version of the above
 - **`generate_pdf.py`** — Python script to generate a PDF from any markdown file in this directory
 
 ## Regenerating or Creating PDFs
