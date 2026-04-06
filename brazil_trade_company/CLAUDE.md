@@ -18,6 +18,8 @@ Research and documentation for establishing and operating an export/import tradi
 - **`establishing_trading_company_brazil.pdf`** — PDF version of the above
 - **`us_vs_japanese_owner_brazil_company.md`** — Comparison of owning a Brazilian company as a US citizen vs. Japanese national: FATCA impact on banking, IRS filing obligations (Form 5471, FBAR, Form 8938), what is the same
 - **`us_vs_japanese_owner_brazil_company.pdf`** — PDF version of the above
+- **`dual_citizen_us_brazil_company_ownership.md`** — Impact of dual US-Brazil citizenship on company ownership: Brazil side advantages (banking, no resident administrator, Simples Nacional), US side unchanged (Form 5471, FBAR, worldwide taxation)
+- **`dual_citizen_us_brazil_company_ownership.pdf`** — PDF version of the above
 
 ## Generating PDFs
 
