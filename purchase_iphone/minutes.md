@@ -27,3 +27,12 @@ Conversation log between the user and Claude for the purchase_iphone project.
 - **After purchase:** Insert Metro PCS SIM or transfer to eSIM via Metro PCS app/store
 
 **Claude:** Created `ebay_iphone15_buying_checklist.md` and `ebay_iphone15_buying_checklist.pdf` and pushed to GitHub.
+
+---
+
+**User:** eBay Refurbished means that No iCloud/Activation Lock?
+
+**Claude:** Explained the difference:
+- **eBay Certified Refurbished:** Activation Lock guaranteed removed — eBay-vetted, 2-year warranty, safest option
+- **eBay Refurbished (standard):** Not guaranteed by eBay — relies on seller integrity; reputable sellers always remove it but no formal backing
+- **Recommendation:** Prioritize eBay Certified Refurbished for peace of mind; always verify IMEI on IMEI.info even for refurbished listings
