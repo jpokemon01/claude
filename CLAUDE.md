@@ -11,6 +11,7 @@ This repo contains two sub-projects:
 - **`brazil_trade_company/`** — Research and documentation for establishing and operating an export/import trading company in Brazil (not deployed)
 - **`purchase_iphone/`** — Research and documentation for purchasing iPhones (not deployed)
 - **`become_youtuber/`** — Research and documentation for becoming a YouTuber (not deployed)
+- **`lina_divorce_document/`** — Research and documentation related to divorce proceedings for Lina (not deployed)
 
 ## Instructions for Each Project Directory
 
