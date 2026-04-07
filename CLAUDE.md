@@ -9,6 +9,7 @@ This repo contains two sub-projects:
 - **`weekly_reports/`** — A static weekly report web application deployed on Vercel, backed by Supabase (PostgreSQL)
 - **`business_processing/`** — Business research and process documentation (not deployed)
 - **`brazil_trade_company/`** — Research and documentation for establishing and operating an export/import trading company in Brazil (not deployed)
+- **`purchase_iphone/`** — Research and documentation for purchasing iPhones (not deployed)
 
 ## Instructions for Each Project Directory
 
