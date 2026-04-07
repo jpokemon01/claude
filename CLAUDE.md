@@ -10,6 +10,7 @@ This repo contains two sub-projects:
 - **`business_processing/`** — Business research and process documentation (not deployed)
 - **`brazil_trade_company/`** — Research and documentation for establishing and operating an export/import trading company in Brazil (not deployed)
 - **`purchase_iphone/`** — Research and documentation for purchasing iPhones (not deployed)
+- **`become_youtuber/`** — Research and documentation for becoming a YouTuber (not deployed)
 
 ## Instructions for Each Project Directory
 
