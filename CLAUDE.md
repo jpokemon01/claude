@@ -12,6 +12,7 @@ This repo contains two sub-projects:
 - **`purchase_iphone/`** — Research and documentation for purchasing iPhones (not deployed)
 - **`become_youtuber/`** — Research and documentation for becoming a YouTuber (not deployed)
 - **`lina_divorce_document/`** — Research and documentation related to divorce proceedings for Lina (not deployed)
+- **`transfer_to_iphone/`** — Research and documentation for transferring data to a new iPhone (not deployed)
 
 ## Instructions for Each Project Directory
 
