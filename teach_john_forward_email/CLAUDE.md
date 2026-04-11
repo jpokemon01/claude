@@ -1,0 +1,19 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working in the `teach_john_forward_email/` directory.
+
+## Overview
+
+Research and documentation for teaching John how to forward email. Not deployed.
+
+## Instructions
+
+- Create `CLAUDE.md` for this directory
+- Create `Skill.md` for this directory
+- Create `minutes.md` for this directory — contents are the conversation between Claude and the user
+
+## Generating PDFs
+
+```
+python business_processing/generate_pdf.py teach_john_forward_email/<filename>.md
+```
