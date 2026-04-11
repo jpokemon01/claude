@@ -16,6 +16,8 @@ Research and documentation for teaching John how to forward email. Not deployed.
 
 - **`how_to_forward_email_guide.md`** — Beginner-friendly step-by-step guide for forwarding email to takeo_inoue_re@yahoo.com. Covers iPhone Mail, Android Gmail, Gmail on computer, and Outlook. Written for someone with no email knowledge.
 - **`how_to_forward_email_guide.pdf`** — PDF version of the above
+- **`how_to_forward_email_android.md`** — Android-only simplified guide for forwarding email to takeo_inoue_re@yahoo.com. Written for complete beginners with no email knowledge.
+- **`how_to_forward_email_android.pdf`** — PDF version of the above
 
 ## Generating PDFs
 
