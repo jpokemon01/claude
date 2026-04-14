@@ -131,13 +131,16 @@ function openForm(id) {
   } else {
     formTitle.textContent = 'New Weekly Report';
     document.getElementById('report-id').value = '';
-    document.getElementById('completed').value = '';
     document.getElementById('planned').value = '';
-    document.getElementById('blockers').value = '';
-    document.getElementById('notes').value = '';
     setupFormDefaults();
     deleteBtn.classList.add('hidden');
     exportBtn.classList.add('hidden');
+
+    // Pre-fill from the most recent previous report
+    const prev = reports.length > 0 ? reports[0] : null;
+    document.getElementById('completed').value = prev?.planned || '';
+    document.getElementById('blockers').value = prev?.blockers || '';
+    document.getElementById('notes').value = prev?.notes || '';
   }
   showView('form');
 }

@@ -53,3 +53,21 @@ Conversation log between the user and Claude for the weekly_reports project.
 **User:** delete vercel.json file from GITHUB
 
 **Claude:** Ran `git rm vercel.json` and pushed. File removed from repository.
+
+---
+
+## 2026-04-13
+
+**User:** What is the URL for weekly reports?
+
+**Claude:** URL was not stored in the project files. Instructed user to check Vercel dashboard.
+
+**User:** please memo for this url: https://claude-5v7awtmyx-takeoinoueti-1573s-projects.vercel.app/
+
+**Claude:** Saved the Vercel deployment URL to memory for future reference.
+
+---
+
+**User:** When creating a new report, automatically pre-fill Completed This Week from the previous week's Planned for Next Week, and pre-fill Blockers / Issues and Additional Notes from the previous week.
+
+**Claude:** Modified `openForm()` in `app.js` — when creating a new report, pre-fills Completed This Week with the most recent report's `planned`, and pre-fills Blockers / Issues and Additional Notes with the most recent report's `blockers` and `notes` respectively. Planned for Next Week is left blank.
