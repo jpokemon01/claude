@@ -71,3 +71,11 @@ Conversation log between the user and Claude for the weekly_reports project.
 **User:** When creating a new report, automatically pre-fill Completed This Week from the previous week's Planned for Next Week, and pre-fill Blockers / Issues and Additional Notes from the previous week.
 
 **Claude:** Modified `openForm()` in `app.js` — when creating a new report, pre-fills Completed This Week with the most recent report's `planned`, and pre-fills Blockers / Issues and Additional Notes with the most recent report's `blockers` and `notes` respectively. Planned for Next Week is left blank.
+
+---
+
+## 2026-04-15
+
+**User:** Fix Supabase security vulnerability — table publicly accessible, RLS not enabled.
+
+**Claude:** Added Supabase Auth (email/password) to the app. Added a login view to `index.html`, login/logout logic to `app.js`, and login styles to `style.css`. The app now requires sign-in before accessing reports. User must complete 3 manual steps in Supabase dashboard: (1) enable RLS on `reports` table, (2) add a policy allowing ALL operations for `authenticated` role with `USING (true)`, (3) create a user account under Authentication → Users.

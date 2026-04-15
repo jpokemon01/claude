@@ -7,6 +7,7 @@ const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 let reports = [];
 
 // --- DOM refs ---
+const loginView = document.getElementById('login-view');
 const listView = document.getElementById('list-view');
 const formView = document.getElementById('form-view');
 const reportList = document.getElementById('report-list');
@@ -14,13 +15,39 @@ const reportForm = document.getElementById('report-form');
 const formTitle = document.getElementById('form-title');
 const deleteBtn = document.getElementById('delete-btn');
 const exportBtn = document.getElementById('export-btn');
+const newReportBtn = document.getElementById('new-report-btn');
+const logoutBtn = document.getElementById('logout-btn');
 
 // --- Init ---
 setupFormDefaults();
-loadReports();
+
+// --- Auth ---
+db.auth.onAuthStateChange((_event, session) => {
+  if (session) {
+    newReportBtn.classList.remove('hidden');
+    logoutBtn.classList.remove('hidden');
+    showView('list');
+  } else {
+    newReportBtn.classList.add('hidden');
+    logoutBtn.classList.add('hidden');
+    showView('login');
+  }
+});
+
+document.getElementById('login-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('login-email').value;
+  const password = document.getElementById('login-password').value;
+  const { error } = await db.auth.signInWithPassword({ email, password });
+  if (error) showToast('Sign in failed: ' + error.message);
+});
+
+logoutBtn.addEventListener('click', async () => {
+  await db.auth.signOut();
+});
 
 // --- Event listeners ---
-document.getElementById('new-report-btn').addEventListener('click', () => openForm());
+newReportBtn.addEventListener('click', () => openForm());
 document.getElementById('back-btn').addEventListener('click', () => showView('list'));
 reportForm.addEventListener('submit', saveReport);
 deleteBtn.addEventListener('click', deleteReport);
@@ -71,6 +98,7 @@ async function loadReports() {
 
 // --- Views ---
 function showView(view) {
+  loginView.classList.toggle('hidden', view !== 'login');
   listView.classList.toggle('hidden', view !== 'list');
   formView.classList.toggle('hidden', view !== 'form');
   if (view === 'list') loadReports();

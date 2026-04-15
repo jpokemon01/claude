@@ -10,12 +10,33 @@
   <div class="app">
     <header>
       <h1>Weekly Report</h1>
-      <button id="new-report-btn" class="btn btn-primary">+ New Report</button>
+      <div class="header-actions">
+        <button id="new-report-btn" class="btn btn-primary hidden">+ New Report</button>
+        <button id="logout-btn" class="btn btn-secondary hidden">Sign Out</button>
+      </div>
     </header>
 
     <main>
+      <!-- Login View -->
+      <section id="login-view">
+        <div class="login-container">
+          <h2>Sign In</h2>
+          <form id="login-form">
+            <div class="form-group">
+              <label for="login-email">Email</label>
+              <input type="email" id="login-email" required placeholder="you@example.com">
+            </div>
+            <div class="form-group">
+              <label for="login-password">Password</label>
+              <input type="password" id="login-password" required placeholder="Password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+          </form>
+        </div>
+      </section>
+
       <!-- Report List View -->
-      <section id="list-view">
+      <section id="list-view" class="hidden">
         <div id="report-list" class="report-list">
           <p class="empty-state">No reports yet. Create your first weekly report.</p>
         </div>
