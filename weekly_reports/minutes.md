@@ -62,7 +62,7 @@ Conversation log between the user and Claude for the weekly_reports project.
 
 **Claude:** URL was not stored in the project files. Instructed user to check Vercel dashboard.
 
-**User:** please memo for this url: https://claude-5v7awtmyx-takeoinoueti-1573s-projects.vercel.app/
+**User:** please memo for this url: https://claude-ace3yxn2g-takeoinoueti-1573s-projects.vercel.app/
 
 **Claude:** Saved the Vercel deployment URL to memory for future reference.
 
