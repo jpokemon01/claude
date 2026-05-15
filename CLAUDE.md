@@ -14,6 +14,7 @@ This repo contains two sub-projects:
 - **`lina_divorce_document/`** — Research and documentation related to divorce proceedings for Lina (not deployed)
 - **`transfer_to_iphone/`** — Research and documentation for transferring data to a new iPhone (not deployed)
 - **`teach_john_forward_email/`** — Research and documentation for teaching John how to forward email (not deployed)
+- **`Yasuhiro_ROTH_IRA/`** — Research and documentation related to Roth IRA for Yasuhiro (not deployed)
 
 ## Instructions for Each Project Directory
 
