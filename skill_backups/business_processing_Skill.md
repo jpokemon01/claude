@@ -10,9 +10,6 @@ Skills and knowledge relevant to this directory.
 - SISCOMEX / RADAR importer registration process
 - Intellectual property law for imported media (Lei 9.610/1998, Lei 9.279/1996)
 - Japan–Brazil trade logistics (sea freight via Santos, air freight via GRU)
-- Brazilian specialty coffee export to Japan (regions, varieties, processing, pricing, buyers)
-- Brazilian gemstone sourcing and export (Imperial Topaz, aquamarine, Paraíba Tourmaline; Ouro Preto, Teófilo Otoni; certifications, shipping, customs)
-- Brazilian trading company setup (CNPJ, RADAR, tax regimes)
 
 ## Document Generation
 

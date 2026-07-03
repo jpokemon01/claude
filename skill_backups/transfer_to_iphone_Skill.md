@@ -14,8 +14,3 @@ Skills and knowledge relevant to this directory.
 - iPhone initial setup steps
 - Activating an unlocked iPhone on a carrier
 - App and settings migration
-
-## Document Generation
-
-- Step-by-step guide writing in Markdown
-- PDF generation via `business_processing/generate_pdf.py`

@@ -13,9 +13,8 @@ Skills and capabilities relevant to working in this project.
 
 - Supabase JS client v2 (loaded via CDN)
 - CRUD operations: `.select()`, `.upsert()`, `.delete().eq()`
-- Supabase Auth: `signInWithPassword()`, `signOut()`, `onAuthStateChange()` session handling
 - Error handling from Supabase responses (`{ data, error }`)
-- Row Level Security (RLS) policies and securing the anon key with authenticated access
+- Understanding of Row Level Security (RLS) policies
 
 ## Deployment
 

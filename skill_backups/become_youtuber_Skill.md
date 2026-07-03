@@ -15,8 +15,3 @@ Skills and knowledge relevant to this directory.
 - YouTube Partner Program requirements
 - Monetization strategies (AdSense, sponsorships, merchandise)
 - Analytics and performance tracking
-
-## Document Generation
-
-- Markdown authoring of long-form guides
-- PDF generation via `business_processing/generate_pdf.py`

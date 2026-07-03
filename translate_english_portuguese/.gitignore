@@ -1,0 +1,9 @@
+# Personal legal documents — never upload (scanned certificates and translations)
+English/
+Portuguese/
+
+# Personal conversation log
+minutes.md
+
+# Contains personal document text embedded in code
+generate_pdfs.py

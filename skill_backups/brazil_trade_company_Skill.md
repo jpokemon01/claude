@@ -10,12 +10,6 @@ Skills and knowledge relevant to this directory.
 - International trade documentation and Incoterms
 - Japan–Brazil bilateral trade knowledge
 
-## US Tax & Citizenship Considerations
-
-- US owner obligations for foreign companies: Form 5471, FBAR, Form 8938, FATCA
-- US vs. Japanese national ownership comparison for Brazilian companies
-- Dual US-Brazil citizenship impact on company ownership (banking, Simples Nacional, resident administrator rules)
-
 ## Research
 
 - Market analysis for trade opportunities

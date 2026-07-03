@@ -7,8 +7,3 @@ Skills and knowledge relevant to this directory.
 - Forwarding emails on various platforms (Gmail, Outlook, iPhone Mail, Android)
 - Step-by-step instructions for non-technical users
 - Screenshots and visual guidance for email tasks
-
-## Document Generation
-
-- Beginner-friendly guide writing in Markdown
-- PDF generation via `business_processing/generate_pdf.py`
