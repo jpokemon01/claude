@@ -16,6 +16,7 @@ This repo contains two sub-projects:
 - **`teach_john_forward_email/`** — Research and documentation for teaching John how to forward email (not deployed)
 - **`Yasuhiro_ROTH_IRA/`** — Research and documentation related to Roth IRA for Yasuhiro (not deployed)
 - **`translate_english_portuguese/`** — Research and documentation for translating content between English and Portuguese (not deployed)
+- **`japanese_game_for_kids/`** — Browser game for a 3-year-old to learn Japanese vocabulary; open `index.html` directly (not deployed)
 
 ## Instructions for Each Project Directory
 

@@ -1,0 +1,419 @@
+<title>にほんご あそび — Japanese for Little Kids</title>
+<style>
+  :root {
+    --ground-a: #EAF6FF;
+    --ground-b: #FFF6E5;
+    --card: #FFFFFF;
+    --card-soft: #FFF8E1;
+    --ink: #4A3F44;
+    --muted: #9A8F96;
+    --accent: #FF6F91;
+    --gold: #FFC53D;
+    --gold-deep: #E0A800;
+    --praise: #2FB344;
+    --correct-bg: #D3F9D8;
+    --shadow: rgba(74, 63, 68, 0.16);
+    --shadow-soft: rgba(74, 63, 68, 0.10);
+    --cat-animals: #FF9F43;
+    --cat-food: #57CC99;
+    --cat-colors: #4D96FF;
+    --cat-numbers: #B983FF;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground-a: #23224A;
+      --ground-b: #1A1E38;
+      --card: #2E2D5C;
+      --card-soft: #3A3453;
+      --ink: #F2EDF3;
+      --muted: #A9A3C4;
+      --praise: #7CE495;
+      --correct-bg: #2F5E3C;
+      --shadow: rgba(0, 0, 0, 0.45);
+      --shadow-soft: rgba(0, 0, 0, 0.3);
+    }
+  }
+  :root[data-theme="light"] {
+    --ground-a: #EAF6FF;
+    --ground-b: #FFF6E5;
+    --card: #FFFFFF;
+    --card-soft: #FFF8E1;
+    --ink: #4A3F44;
+    --muted: #9A8F96;
+    --praise: #2FB344;
+    --correct-bg: #D3F9D8;
+    --shadow: rgba(74, 63, 68, 0.16);
+    --shadow-soft: rgba(74, 63, 68, 0.10);
+  }
+  :root[data-theme="dark"] {
+    --ground-a: #23224A;
+    --ground-b: #1A1E38;
+    --card: #2E2D5C;
+    --card-soft: #3A3453;
+    --ink: #F2EDF3;
+    --muted: #A9A3C4;
+    --praise: #7CE495;
+    --correct-bg: #2F5E3C;
+    --shadow: rgba(0, 0, 0, 0.45);
+    --shadow-soft: rgba(0, 0, 0, 0.3);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { height: 100%; overflow: hidden; }
+  body {
+    font-family: ui-rounded, "Hiragino Maru Gothic ProN", "Yu Gothic UI", "Yu Gothic", "Meiryo", "Segoe UI", sans-serif;
+    background: linear-gradient(165deg, var(--ground-a) 0%, var(--ground-b) 100%);
+    color: var(--ink);
+    display: flex; flex-direction: column; align-items: center;
+    user-select: none; -webkit-user-select: none; touch-action: manipulation;
+  }
+  button { font-family: inherit; color: inherit; }
+  button:focus-visible { outline: 4px solid var(--gold); outline-offset: 3px; }
+
+  .screen { display: none; width: 100%; max-width: 720px; height: 100%; flex-direction: column; align-items: center; padding: 16px; }
+  .screen.active { display: flex; }
+
+  /* ---------- Home ---------- */
+  h1 { font-size: clamp(30px, 7vw, 50px); color: var(--accent); margin: 20px 0 4px; text-wrap: balance; }
+  .subtitle { font-size: clamp(14px, 3.5vw, 19px); color: var(--muted); margin-bottom: 20px; text-align: center; }
+  .mode-row { display: flex; gap: 14px; width: 100%; margin-bottom: 18px; }
+  .mode-btn {
+    flex: 1; border: 4px solid transparent; border-radius: 24px; padding: 14px 6px;
+    font-size: clamp(15px, 4vw, 20px); font-weight: 700; cursor: pointer; line-height: 1.35;
+    background: var(--card); color: var(--muted); box-shadow: 0 4px 0 var(--shadow-soft);
+  }
+  .mode-btn.selected { border-color: var(--gold); color: var(--ink); background: var(--card-soft); }
+  .cat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; width: 100%; flex: 1; align-content: center; }
+  .cat-btn {
+    border: none; border-radius: 28px; padding: 22px 8px; cursor: pointer;
+    font-size: clamp(18px, 4.5vw, 26px); font-weight: 700; color: #FFFFFF;
+    box-shadow: 0 6px 0 var(--shadow); transition: transform .1s;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .cat-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--shadow); }
+  .cat-btn .big { font-size: clamp(44px, 12vw, 72px); }
+  .cat-animals { background: var(--cat-animals); }
+  .cat-food    { background: var(--cat-food); }
+  .cat-colors  { background: var(--cat-colors); }
+  .cat-numbers { background: var(--cat-numbers); }
+
+  /* ---------- Top bar ---------- */
+  .topbar { display: flex; width: 100%; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .home-btn {
+    border: none; background: var(--card); border-radius: 50%; width: 56px; height: 56px;
+    font-size: 26px; cursor: pointer; box-shadow: 0 4px 0 var(--shadow-soft);
+  }
+  .home-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 var(--shadow-soft); }
+  .stars { font-size: clamp(20px, 5vw, 28px); letter-spacing: 2px; min-height: 1.2em; }
+
+  /* ---------- Flashcards ---------- */
+  .card {
+    flex: 1; width: 100%; max-height: 60vh; background: var(--card); border: none; border-radius: 36px;
+    box-shadow: 0 10px 24px var(--shadow); display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 8px; cursor: pointer; margin: 8px 0;
+  }
+  .card .emoji { font-size: clamp(90px, 26vw, 180px); line-height: 1.1; }
+  .card .ja { font-size: clamp(36px, 10vw, 64px); font-weight: 700; color: var(--ink); }
+  .card .en { font-size: clamp(16px, 4.5vw, 24px); color: var(--muted); }
+  .card.pop { animation: pop .35s ease; }
+  @keyframes pop { 0% {transform: scale(1);} 40% {transform: scale(1.07);} 100% {transform: scale(1);} }
+  .nav-row { display: flex; gap: 16px; width: 100%; padding-bottom: 12px; }
+  .nav-btn {
+    flex: 1; border: none; border-radius: 24px; padding: 18px 0; font-size: 34px; cursor: pointer;
+    background: var(--gold); box-shadow: 0 6px 0 var(--gold-deep);
+  }
+  .nav-btn:active { transform: translateY(4px); box-shadow: 0 2px 0 var(--gold-deep); }
+
+  /* ---------- Quiz ---------- */
+  .prompt {
+    width: 100%; background: var(--card); border: none; border-radius: 28px; padding: 18px;
+    display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap;
+    box-shadow: 0 6px 16px var(--shadow-soft); margin: 8px 0 18px; cursor: pointer;
+  }
+  .prompt .speaker { font-size: 38px; }
+  .prompt .word { font-size: clamp(30px, 8.5vw, 50px); font-weight: 700; color: var(--accent); }
+  .prompt .word.rest { color: var(--ink); }
+  .choices { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; width: 100%; }
+  .choice {
+    border: none; background: var(--card); border-radius: 28px; aspect-ratio: 1;
+    font-size: clamp(52px, 16vw, 96px); cursor: pointer;
+    box-shadow: 0 8px 0 var(--shadow-soft); transition: transform .1s;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .choice:active { transform: translateY(4px); }
+  .choice.correct { background: var(--correct-bg); animation: pop .4s ease; }
+  .choice.wrong { animation: wobble .45s ease; }
+  @keyframes wobble {
+    0%,100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+  }
+  .praise {
+    font-size: clamp(28px, 8vw, 44px); font-weight: 700; color: var(--praise);
+    min-height: 1.4em; margin-top: 18px; text-align: center;
+  }
+
+  /* ---------- Confetti ---------- */
+  .confetti {
+    position: fixed; font-size: 30px; pointer-events: none; z-index: 99;
+    animation: fall 1.4s ease-in forwards;
+  }
+  @keyframes fall {
+    0% { transform: translateY(-10vh) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(105vh) rotate(360deg); opacity: 0.3; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .card.pop, .choice.correct, .choice.wrong, .confetti { animation: none; }
+    .confetti { display: none; }
+  }
+</style>
+
+<!-- ============ HOME ============ -->
+<div class="screen active" id="screen-home">
+  <h1>にほんご あそび 🎌</h1>
+  <div class="subtitle">Tap a picture to play! すきなのを えらんでね</div>
+  <div class="mode-row">
+    <button class="mode-btn selected" id="mode-cards">🃏 カード<br><small>Look &amp; Listen</small></button>
+    <button class="mode-btn" id="mode-quiz">🎯 クイズ<br><small>Find It!</small></button>
+  </div>
+  <div class="cat-grid">
+    <button class="cat-btn cat-animals" data-cat="animals"><span class="big">🐶</span>どうぶつ</button>
+    <button class="cat-btn cat-food"    data-cat="food"><span class="big">🍎</span>たべもの</button>
+    <button class="cat-btn cat-colors"  data-cat="colors"><span class="big">🌈</span>いろ</button>
+    <button class="cat-btn cat-numbers" data-cat="numbers"><span class="big">✋</span>かず</button>
+  </div>
+</div>
+
+<!-- ============ FLASHCARDS ============ -->
+<div class="screen" id="screen-cards">
+  <div class="topbar">
+    <button class="home-btn" data-home aria-label="Home">🏠</button>
+    <div class="stars" id="stars-cards"></div>
+    <div style="width:56px"></div>
+  </div>
+  <button class="card" id="card">
+    <div class="emoji" id="card-emoji"></div>
+    <div class="ja" id="card-ja"></div>
+    <div class="en" id="card-en"></div>
+  </button>
+  <div class="nav-row">
+    <button class="nav-btn" id="btn-prev" aria-label="Previous">⬅️</button>
+    <button class="nav-btn" id="btn-say" aria-label="Say it again">🔊</button>
+    <button class="nav-btn" id="btn-next" aria-label="Next">➡️</button>
+  </div>
+</div>
+
+<!-- ============ QUIZ ============ -->
+<div class="screen" id="screen-quiz">
+  <div class="topbar">
+    <button class="home-btn" data-home aria-label="Home">🏠</button>
+    <div class="stars" id="stars-quiz"></div>
+    <div style="width:56px"></div>
+  </div>
+  <button class="prompt" id="prompt">
+    <span class="speaker">🔊</span>
+    <span class="word" id="quiz-word"></span>
+    <span class="word rest">は どれ？</span>
+  </button>
+  <div class="choices" id="choices"></div>
+  <div class="praise" id="praise"></div>
+</div>
+
+<script>
+const WORDS = {
+  animals: [
+    { emoji: "🐱", ja: "ねこ",   en: "cat" },
+    { emoji: "🐶", ja: "いぬ",   en: "dog" },
+    { emoji: "🐰", ja: "うさぎ", en: "rabbit" },
+    { emoji: "🐘", ja: "ぞう",   en: "elephant" },
+    { emoji: "🐟", ja: "さかな", en: "fish" },
+    { emoji: "🐦", ja: "とり",   en: "bird" },
+    { emoji: "🐻", ja: "くま",   en: "bear" },
+    { emoji: "🐷", ja: "ぶた",   en: "pig" },
+  ],
+  food: [
+    { emoji: "🍎", ja: "りんご",   en: "apple" },
+    { emoji: "🍌", ja: "バナナ",   en: "banana" },
+    { emoji: "🍓", ja: "いちご",   en: "strawberry" },
+    { emoji: "🍙", ja: "おにぎり", en: "rice ball" },
+    { emoji: "🍞", ja: "パン",     en: "bread" },
+    { emoji: "🥛", ja: "ぎゅうにゅう", en: "milk" },
+  ],
+  colors: [
+    { emoji: "🔴", ja: "あか",   en: "red" },
+    { emoji: "🔵", ja: "あお",   en: "blue" },
+    { emoji: "🟡", ja: "きいろ", en: "yellow" },
+    { emoji: "🟢", ja: "みどり", en: "green" },
+    { emoji: "⚪", ja: "しろ",   en: "white" },
+    { emoji: "⚫", ja: "くろ",   en: "black" },
+  ],
+  numbers: [
+    { emoji: "1️⃣", ja: "いち", en: "one" },
+    { emoji: "2️⃣", ja: "に",   en: "two" },
+    { emoji: "3️⃣", ja: "さん", en: "three" },
+    { emoji: "4️⃣", ja: "よん", en: "four" },
+    { emoji: "5️⃣", ja: "ご",   en: "five" },
+  ],
+};
+const PRAISE = ["すごい！", "やったね！", "じょうずだね！", "せいかい！"];
+
+let mode = "cards";
+let category = "animals";
+let cardIndex = 0;
+let quizAnswer = null;
+let quizLocked = false;
+let stars = 0;
+
+// ---------- speech ----------
+let jaVoice = null;
+function pickVoice() {
+  const voices = speechSynthesis.getVoices();
+  jaVoice = voices.find(v => v.lang.startsWith("ja")) || null;
+}
+if ("speechSynthesis" in window) {
+  pickVoice();
+  speechSynthesis.onvoiceschanged = pickVoice;
+}
+function speak(text, rate) {
+  if (!("speechSynthesis" in window)) return;
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = "ja-JP";
+  if (jaVoice) u.voice = jaVoice;
+  u.rate = rate || 0.8;
+  u.pitch = 1.15;
+  speechSynthesis.speak(u);
+}
+
+// ---------- navigation ----------
+function setMode(m) {
+  mode = m;
+  document.getElementById("mode-cards").classList.toggle("selected", m === "cards");
+  document.getElementById("mode-quiz").classList.toggle("selected", m === "quiz");
+}
+function show(id) {
+  document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+function goHome() {
+  speechSynthesis.cancel();
+  show("screen-home");
+}
+function startGame(cat) {
+  category = cat;
+  if (mode === "cards") {
+    cardIndex = 0;
+    show("screen-cards");
+    renderCard();
+  } else {
+    stars = 0;
+    updateStars();
+    show("screen-quiz");
+    newQuiz();
+  }
+}
+
+// ---------- flashcards ----------
+function renderCard() {
+  const w = WORDS[category][cardIndex];
+  document.getElementById("card-emoji").textContent = w.emoji;
+  document.getElementById("card-ja").textContent = w.ja;
+  document.getElementById("card-en").textContent = w.en;
+  const card = document.getElementById("card");
+  card.classList.remove("pop");
+  void card.offsetWidth;
+  card.classList.add("pop");
+  speak(w.ja);
+}
+function speakCurrent() {
+  speak(WORDS[category][cardIndex].ja, 0.7);
+}
+function nextCard() {
+  cardIndex = (cardIndex + 1) % WORDS[category].length;
+  renderCard();
+}
+function prevCard() {
+  cardIndex = (cardIndex - 1 + WORDS[category].length) % WORDS[category].length;
+  renderCard();
+}
+
+// ---------- quiz ----------
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+function newQuiz() {
+  quizLocked = false;
+  document.getElementById("praise").textContent = "";
+  const options = shuffle(WORDS[category]).slice(0, 3);
+  quizAnswer = options[Math.floor(Math.random() * options.length)];
+  document.getElementById("quiz-word").textContent = quizAnswer.ja;
+  const box = document.getElementById("choices");
+  box.innerHTML = "";
+  options.forEach(w => {
+    const btn = document.createElement("button");
+    btn.className = "choice";
+    btn.textContent = w.emoji;
+    btn.addEventListener("click", () => pick(btn, w));
+    box.appendChild(btn);
+  });
+  speakQuiz();
+}
+function speakQuiz() {
+  speak(quizAnswer.ja + " は どれ？", 0.85);
+}
+function pick(btn, w) {
+  if (quizLocked) return;
+  if (w === quizAnswer) {
+    quizLocked = true;
+    btn.classList.add("correct");
+    stars++;
+    updateStars();
+    const p = PRAISE[Math.floor(Math.random() * PRAISE.length)];
+    document.getElementById("praise").textContent = "⭐ " + p;
+    speak(p + "　" + w.ja + "！", 0.9);
+    confetti();
+    setTimeout(newQuiz, 2200);
+  } else {
+    btn.classList.add("wrong");
+    setTimeout(() => btn.classList.remove("wrong"), 500);
+    speak("もういっかい！　" + quizAnswer.ja + " は どれ？", 0.85);
+  }
+}
+function updateStars() {
+  const shown = Math.min(stars, 10);
+  const text = "⭐".repeat(shown) + (stars > 10 ? " +" + (stars - 10) : "");
+  document.getElementById("stars-quiz").textContent = text;
+  document.getElementById("stars-cards").textContent = text;
+}
+function confetti() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const emojis = ["🎉", "⭐", "🌸", "✨", "🎈"];
+  for (let i = 0; i < 14; i++) {
+    const el = document.createElement("div");
+    el.className = "confetti";
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    el.style.left = Math.random() * 100 + "vw";
+    el.style.animationDelay = Math.random() * 0.4 + "s";
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 2000);
+  }
+}
+
+// ---------- wiring ----------
+document.getElementById("mode-cards").addEventListener("click", () => setMode("cards"));
+document.getElementById("mode-quiz").addEventListener("click", () => setMode("quiz"));
+document.querySelectorAll(".cat-btn").forEach(b =>
+  b.addEventListener("click", () => startGame(b.dataset.cat)));
+document.querySelectorAll("[data-home]").forEach(b =>
+  b.addEventListener("click", goHome));
+document.getElementById("card").addEventListener("click", speakCurrent);
+document.getElementById("btn-say").addEventListener("click", speakCurrent);
+document.getElementById("btn-prev").addEventListener("click", prevCard);
+document.getElementById("btn-next").addEventListener("click", nextCard);
+document.getElementById("prompt").addEventListener("click", speakQuiz);
+</script>
