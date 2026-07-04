@@ -29,4 +29,4 @@ This repo contains two sub-projects:
 - **Hosting:** Vercel, connected to the `jpokemon01/claude` GitHub repo (`main` branch)
 - **Root Directory:** Set to `weekly_reports` in the Vercel project settings (not via `vercel.json`)
 - Pushing to `main` triggers an automatic redeploy
-- **Database:** Supabase project at `https://pujgfojebzyetxypwytg.supabase.co`
+- **Database:** Supabase project `takeo-apps` at `https://pujgfojebzyetxypwytg.supabase.co` — one shared database serving multiple apps: `reports` table (weekly_reports) and `japanese_words` table (japanese_game_for_kids)

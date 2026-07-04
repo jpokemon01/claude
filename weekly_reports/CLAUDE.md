@@ -9,7 +9,7 @@ A single-page static web app for creating and managing weekly work reports. No b
 ## Deployment
 
 - **Hosting:** Vercel — auto-deploys on push to `main` (root directory set to `weekly_reports/` in Vercel project settings)
-- **Database:** Supabase at `https://pujgfojebzyetxypwytg.supabase.co`, table: `reports`
+- **Database:** Supabase project `takeo-apps` at `https://pujgfojebzyetxypwytg.supabase.co`, table: `reports` (the project is shared — it also holds `japanese_words` for the japanese_game_for_kids app)
 - RLS must be **disabled** on the `reports` table for the anon key to work
 
 ## Architecture

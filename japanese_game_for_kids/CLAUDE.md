@@ -20,7 +20,7 @@ Served by the weekly_reports Vercel project via a copy at `weekly_reports/japane
 
 ## Vocabulary Data
 
-Words live in the `japanese_words` table in the same Supabase project as weekly_reports (`https://pujgfojebzyetxypwytg.supabase.co`). Schema and seed data: `schema.sql` (run once in the Supabase SQL Editor).
+Words live in the `japanese_words` table in the shared Supabase project `takeo-apps` (`https://pujgfojebzyetxypwytg.supabase.co`), the same project that holds the weekly_reports `reports` table. Schema and seed data: `schema.sql` (already run in the Supabase SQL Editor on 2026-07-04).
 
 - Columns: `category` (one of `animals`/`food`/`colors`/`numbers`), `emoji`, `ja`, `en`, `sort_order`
 - RLS enabled with a public **read-only** policy — the game fetches with the anon key via plain `fetch()`; no write path from the browser
