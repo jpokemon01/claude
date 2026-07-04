@@ -63,3 +63,11 @@ Game design:
 **Takeo:** And tell me agin for URL / This fix made I can add myself for new words by updating Vercel japanese_words table right?
 
 **Claude:** Re-shared the URLs — Vercel: https://claude-takeoinoueti-1573s-projects.vercel.app/japanese_game/ (database-driven), Artifact: https://claude.ai/code/artifact/4db924b4-00f4-4586-8ac1-697137c901a0, local: `index.html`. Confirmed Takeo can add words himself via the Supabase (not Vercel) Table Editor → `japanese_words` → Insert row (category/emoji/ja/en/sort_order); no code change or redeploy needed. Rules: categories fixed to animals/food/colors/numbers, keep ≥3 words per category. Only the Vercel version reads the database.
+
+**Takeo:** when I access https://claude-takeoinoueti-1573s-projects.vercel.app/japanese_game/ from different PC, I need to login Vercel to login to use the game. Please fix without login Vercel.
+
+**Claude:** The login is Vercel Deployment Protection — fixable only in Takeo's Vercel dashboard: project → Settings → Deployment Protection → Vercel Authentication → Disabled → Save. Also suggested checking Settings → Domains for the shorter production domain, which is often public already. Noted the trade-off: disabling makes everything public, but weekly_reports data stays safe behind its own Supabase login.
+
+**Takeo:** OK I changed
+
+**Claude:** Verified from outside the account: the game URL now loads without any Vercel login, and the weekly reports root still shows only the sign-in form (report data remains behind Supabase auth). Game is now freely shareable on any device.
