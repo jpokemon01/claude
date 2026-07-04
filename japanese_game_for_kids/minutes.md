@@ -71,3 +71,7 @@ Game design:
 **Takeo:** OK I changed
 
 **Claude:** Verified from outside the account: the game URL now loads without any Vercel login, and the weekly reports root still shows only the sign-in form (report data remains behind Supabase auth). Game is now freely shareable on any device.
+
+**Takeo:** I use this game application from my phone. move is fine but no voice. Is it possible to use from phone also?
+
+**Claude:** Fixed mobile speech: (1) added a one-time audio "unlock" on the first tap (mobile browsers block speechSynthesis until a user gesture), (2) delayed speak() by 80ms after cancel() with resume() (Android Chrome drops utterances spoken in the same tick as cancel; iOS can get stuck paused), (3) re-query the Japanese voice lazily since voices load late on mobile. Applied to both index.html and artifact.html, redeployed Vercel copy and Artifact. Also advised: iPhone silent-mode switch mutes speech; Android needs Japanese in Google TTS settings.

@@ -244,15 +244,35 @@ if ("speechSynthesis" in window) {
   pickVoice();
   speechSynthesis.onvoiceschanged = pickVoice;
 }
+// Mobile browsers (iOS Safari, Android Chrome) block speech until a
+// user tap "unlocks" audio — do it once on the very first touch.
+let speechUnlocked = false;
+function unlockSpeech() {
+  if (speechUnlocked || !("speechSynthesis" in window)) return;
+  speechUnlocked = true;
+  const u = new SpeechSynthesisUtterance(" ");
+  u.volume = 0;
+  speechSynthesis.speak(u);
+}
+document.addEventListener("pointerdown", unlockSpeech, { once: true, capture: true });
+document.addEventListener("touchstart", unlockSpeech, { once: true, capture: true });
+
 function speak(text, rate) {
   if (!("speechSynthesis" in window)) return;
   speechSynthesis.cancel();
+  if (!jaVoice) pickVoice(); // voices often load late on mobile
   const u = new SpeechSynthesisUtterance(text);
   u.lang = "ja-JP";
   if (jaVoice) u.voice = jaVoice;
   u.rate = rate || 0.8;
   u.pitch = 1.15;
-  speechSynthesis.speak(u);
+  // Android Chrome silently drops an utterance spoken in the same tick
+  // as cancel(); a short delay (plus resume() for iOS's stuck-paused
+  // state) makes it reliable.
+  setTimeout(() => {
+    speechSynthesis.resume();
+    speechSynthesis.speak(u);
+  }, 80);
 }
 
 // ---------- navigation ----------
