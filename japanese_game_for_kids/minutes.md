@@ -59,3 +59,7 @@ Game design:
 **Takeo:** this change is no inpact for weekly_reports right?
 
 **Claude:** Confirmed zero impact: the rename changed only the dashboard display label; apps connect via the unchanged URL and anon key, and today's commits touched only documentation and the game — weekly_reports app files (`index.html`, `app.js`, `style.css`) are untouched.
+
+**Takeo:** And tell me agin for URL / This fix made I can add myself for new words by updating Vercel japanese_words table right?
+
+**Claude:** Re-shared the URLs — Vercel: https://claude-takeoinoueti-1573s-projects.vercel.app/japanese_game/ (database-driven), Artifact: https://claude.ai/code/artifact/4db924b4-00f4-4586-8ac1-697137c901a0, local: `index.html`. Confirmed Takeo can add words himself via the Supabase (not Vercel) Table Editor → `japanese_words` → Insert row (category/emoji/ja/en/sort_order); no code change or redeploy needed. Rules: categories fixed to animals/food/colors/numbers, keep ≥3 words per category. Only the Vercel version reads the database.
