@@ -75,3 +75,7 @@ Game design:
 **Takeo:** I use this game application from my phone. move is fine but no voice. Is it possible to use from phone also?
 
 **Claude:** Fixed mobile speech: (1) added a one-time audio "unlock" on the first tap (mobile browsers block speechSynthesis until a user gesture), (2) delayed speak() by 80ms after cancel() with resume() (Android Chrome drops utterances spoken in the same tick as cancel; iOS can get stuck paused), (3) re-query the Japanese voice lazily since voices load late on mobile. Applied to both index.html and artifact.html, redeployed Vercel copy and Artifact. Also advised: iPhone silent-mode switch mutes speech; Android needs Japanese in Google TTS settings.
+
+**Takeo:** I still have this problem. my phone is android
+
+**Claude:** Deployed a diagnostic page at /japanese_game/voice-test.html (tests English speech, Japanese speech, and lists installed voices with on-screen results) to pinpoint the cause. Suspects on Android: media volume at zero (separate from ring volume) or missing Japanese voice pack in Google Text-to-speech.

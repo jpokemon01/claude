@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voice Test — にほんご あそび</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: "Segoe UI", sans-serif; padding: 16px; background: #f5f7fa; color: #222; }
+  h1 { font-size: 20px; margin-bottom: 12px; }
+  button {
+    display: block; width: 100%; padding: 18px; margin: 10px 0; font-size: 18px;
+    border: none; border-radius: 12px; background: #4d96ff; color: #fff; cursor: pointer;
+  }
+  button.jp { background: #ff6f91; }
+  #log {
+    margin-top: 16px; padding: 12px; background: #fff; border-radius: 12px;
+    font-family: Consolas, monospace; font-size: 14px; line-height: 1.6;
+    white-space: pre-wrap; word-break: break-all; min-height: 200px;
+  }
+  .ok { color: #2fb344; } .bad { color: #d6336c; } .info { color: #666; }
+</style>
+</head>
+<body>
+<h1>🔊 Voice Test</h1>
+<button id="test-en">1️⃣ Speak English: "Hello, this is a test"</button>
+<button id="test-ja" class="jp">2️⃣ Speak Japanese: 「こんにちは、ねこ」</button>
+<button id="list-voices" style="background:#888">3️⃣ Show available voices</button>
+<div id="log">Tap the buttons above. Results appear here.</div>
+<script>
+const log = document.getElementById("log");
+function line(msg, cls) {
+  const s = document.createElement("div");
+  s.textContent = msg;
+  if (cls) s.className = cls;
+  log.appendChild(s);
+}
+
+if (!("speechSynthesis" in window)) {
+  line("❌ This browser has NO speech support (speechSynthesis missing).", "bad");
+}
+
+function voices() { return speechSynthesis.getVoices(); }
+
+function speakTest(text, lang) {
+  speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = lang;
+  const v = voices().find(v => v.lang.replace("_","-").startsWith(lang.split("-")[0]));
+  if (v) { u.voice = v; line("Using voice: " + v.name + " (" + v.lang + ")", "info"); }
+  else { line("No installed voice matches " + lang + " — using browser default.", "info"); }
+  u.volume = 1;
+  u.onstart = () => line("▶ started speaking (" + lang + ") — if you hear nothing, check MEDIA volume.", "ok");
+  u.onend   = () => line("✔ finished (" + lang + ")", "ok");
+  u.onerror = (e) => line("❌ speech error: " + e.error, "bad");
+  setTimeout(() => { speechSynthesis.resume(); speechSynthesis.speak(u); }, 80);
+}
+
+document.getElementById("test-en").addEventListener("click", () => speakTest("Hello, this is a test.", "en-US"));
+document.getElementById("test-ja").addEventListener("click", () => speakTest("こんにちは、ねこ", "ja-JP"));
+document.getElementById("list-voices").addEventListener("click", () => {
+  const all = voices();
+  line("Total voices: " + all.length, all.length ? "info" : "bad");
+  const ja = all.filter(v => v.lang.replace("_","-").startsWith("ja"));
+  if (ja.length) ja.forEach(v => line("✔ Japanese voice: " + v.name + " (" + v.lang + ")", "ok"));
+  else line("❌ NO Japanese voice installed on this phone.", "bad");
+  all.slice(0, 15).forEach(v => line("   " + v.name + " — " + v.lang, "info"));
+  if (all.length > 15) line("   …and " + (all.length - 15) + " more", "info");
+});
+speechSynthesis.onvoiceschanged = () => line("(voice list loaded: " + voices().length + " voices)", "info");
+</script>
+</body>
+</html>
