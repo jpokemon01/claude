@@ -27,3 +27,7 @@ Game design:
 **Takeo:** create the game in Vercel to do the same as weekly_reports
 
 **Claude:** Deployed the game through the existing weekly_reports Vercel project (its Root Directory is `weekly_reports`, so a separate top-level folder can't be deployed without creating a new Vercel project). Copied the game to `weekly_reports/japanese_game/index.html` and pushed — it's now served at the `/japanese_game/` path on the weekly reports domain. `japanese_game_for_kids/index.html` remains the source of truth; re-copy and push after edits.
+
+**Takeo:** set such as animal, number items in database such as weekly_reports / I am using Nord VPN to access the security resons. Do I need to you?
+
+**Claude:** Moved the vocabulary to Supabase like weekly_reports. Created `schema.sql` (a `japanese_words` table: category/emoji/ja/en/sort_order, RLS enabled with public read-only policy, seeded with all 25 words) — Takeo needs to run it once in the Supabase SQL Editor since the anon key can't create tables. Updated the game to fetch words from the table at load, keeping the built-in words as offline fallback. Words can then be added/edited in the Supabase Table Editor without code changes. Note: could not reach Supabase from this PC to verify (DNS blocked — possibly the NordVPN connection); the game is deployed and safe either way thanks to the fallback.

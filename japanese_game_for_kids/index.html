@@ -162,6 +162,11 @@
 </div>
 
 <script>
+// Words are loaded from the japanese_words table in Supabase (see schema.sql).
+// The list below is the fallback when the database is unreachable (offline use).
+const SUPABASE_URL = 'https://pujgfojebzyetxypwytg.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB1amdmb2plYnp5ZXR4eXB3eXRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzNDcwOTcsImV4cCI6MjA5MDkyMzA5N30.VaDkMTOy7R6Cbip9hMh1ZmoBtDoAUZckylJCmYD4k4k';
+
 const WORDS = {
   animals: [
     { emoji: "🐱", ja: "ねこ",   en: "cat" },
@@ -198,6 +203,29 @@ const WORDS = {
   ],
 };
 const PRAISE = ["すごい！", "やったね！", "じょうずだね！", "せいかい！"];
+
+async function loadWordsFromDb() {
+  try {
+    const res = await fetch(
+      SUPABASE_URL + "/rest/v1/japanese_words?select=category,emoji,ja,en&order=category,sort_order",
+      { headers: { apikey: SUPABASE_KEY, Authorization: "Bearer " + SUPABASE_KEY } }
+    );
+    if (!res.ok) return;
+    const rows = await res.json();
+    const byCat = {};
+    for (const r of rows) {
+      if (!r.category || !r.emoji || !r.ja) continue;
+      (byCat[r.category] = byCat[r.category] || []).push({ emoji: r.emoji, ja: r.ja, en: r.en || "" });
+    }
+    // The quiz needs 3 choices, so only take categories with at least 3 words
+    for (const c of Object.keys(byCat)) {
+      if (WORDS[c] && byCat[c].length >= 3) WORDS[c] = byCat[c];
+    }
+  } catch (e) {
+    // Offline or database unavailable — keep the built-in words
+  }
+}
+loadWordsFromDb();
 
 let mode = "cards";
 let category = "animals";

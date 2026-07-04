@@ -18,6 +18,12 @@ Served by the weekly_reports Vercel project via a copy at `weekly_reports/japane
 - Four categories: どうぶつ (animals), たべもの (food), いろ (colors), かず (numbers 1–5)
 - Designed for a toddler: giant tap targets, no reading required, no failure states, gentle retry on wrong answers
 
-## Adding Vocabulary
+## Vocabulary Data
 
-Edit the `WORDS` object in `index.html` — each entry is `{ emoji, ja, en }`. New categories need a matching button on the home screen.
+Words live in the `japanese_words` table in the same Supabase project as weekly_reports (`https://pujgfojebzyetxypwytg.supabase.co`). Schema and seed data: `schema.sql` (run once in the Supabase SQL Editor).
+
+- Columns: `category` (one of `animals`/`food`/`colors`/`numbers`), `emoji`, `ja`, `en`, `sort_order`
+- RLS enabled with a public **read-only** policy — the game fetches with the anon key via plain `fetch()`; no write path from the browser
+- **To add/edit words:** use the Supabase dashboard Table Editor; the game picks up changes on next page load. Keep at least 3 words per category (the quiz shows 3 choices)
+- The `WORDS` object in `index.html` is the offline fallback, used whenever the database is unreachable; keep it in sync-ish with the table for offline play
+- `artifact.html` (Claude Artifact version) always uses the embedded words — the Artifact CSP blocks external requests, so it cannot reach Supabase
