@@ -22,4 +22,8 @@ Game design:
 
 **Takeo:** Thank you. let me try / would you update GITHUB?
 
-**Claude:** Committed the `japanese_game_for_kids/` project (game, docs, minutes) and the root `CLAUDE.md` update, and pushed to `main` on GitHub.
+**Claude:** Committed the `japanese_game_for_kids/` project (game, docs, minutes) and the root `CLAUDE.md` update, and pushed to `main` on GitHub (commit `7f62728`).
+
+**Takeo:** create the game in Vercel to do the same as weekly_reports
+
+**Claude:** Deployed the game through the existing weekly_reports Vercel project (its Root Directory is `weekly_reports`, so a separate top-level folder can't be deployed without creating a new Vercel project). Copied the game to `weekly_reports/japanese_game/index.html` and pushed — it's now served at the `/japanese_game/` path on the weekly reports domain. `japanese_game_for_kids/index.html` remains the source of truth; re-copy and push after edits.

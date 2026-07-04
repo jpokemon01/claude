@@ -4,7 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working in the 
 
 ## Overview
 
-A browser-based game for a 3-year-old to learn Japanese vocabulary. Not deployed — open `index.html` directly in a browser (works offline, no build step, no dependencies).
+A browser-based game for a 3-year-old to learn Japanese vocabulary. Open `index.html` directly in a browser (works offline, no build step, no dependencies).
+
+## Deployment
+
+Served by the weekly_reports Vercel project via a copy at `weekly_reports/japanese_game/index.html` — reachable at the `/japanese_game/` path on the weekly reports domain. **`japanese_game_for_kids/index.html` is the source of truth:** after editing it, re-copy it to `weekly_reports/japanese_game/index.html` and push to `main` to redeploy. There is also a Claude Artifact version (`artifact.html`).
 
 ## How It Works
 

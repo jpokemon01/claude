@@ -16,7 +16,7 @@ This repo contains two sub-projects:
 - **`teach_john_forward_email/`** — Research and documentation for teaching John how to forward email (not deployed)
 - **`Yasuhiro_ROTH_IRA/`** — Research and documentation related to Roth IRA for Yasuhiro (not deployed)
 - **`translate_english_portuguese/`** — Research and documentation for translating content between English and Portuguese (not deployed)
-- **`japanese_game_for_kids/`** — Browser game for a 3-year-old to learn Japanese vocabulary; open `index.html` directly (not deployed)
+- **`japanese_game_for_kids/`** — Browser game for a 3-year-old to learn Japanese vocabulary; source of truth for the game. Deployed via a copy at `weekly_reports/japanese_game/index.html`, served by the same Vercel project at the `/japanese_game/` path
 
 ## Instructions for Each Project Directory
 
