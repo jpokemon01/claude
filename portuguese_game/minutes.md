@@ -24,3 +24,7 @@ Conversation log between Takeo and Claude for the portuguese_game project.
 **Takeo:** For Greeting, delete all except prazer em conhecer and put more phrase for greeting. Also, if I want to know each word meaning, you can show for example, conhecer itself means knowing but put words with prazer em causes nice to meeting (knowing) you. For Numbers, no need from 1 to 10. Need from 11 to 20 and 30, 40, --- 100, 1000.
 
 **Claude:** Three changes: (1) Greetings rebuilt — kept only "Prazer em conhecer", added 9 phrase-level greetings (Como você está?, Há quanto tempo!, Seja bem-vindo, Cuide-se…). (2) Added a `note` field: word-by-word literal breakdown shown on the card back (e.g. prazer = pleasure / em = in / conhecer = to know → "pleasure in knowing you"); notes added to greetings, compound numbers, and all sentence-type entries. (3) Numbers replaced 1–10 with 11–20, 30…90, 100, 1000. `schema.sql` restructured to drop-and-rebuild so it's safe to run regardless of prior state; removed `add_advanced_words.sql`.
+
+**Takeo:** would you do the same for Phrase and Conversation like Greeting for each word explain
+
+**Claude:** Added word-by-word breakdown notes to every sentence in Phrases and Conversation (plus the two travel phrases and "Vamos fechar o negócio") in the app's built-in fallback words, matching what schema.sql already seeds — with JA glosses and verb-conjugation hints (e.g. "morar の活用"). Deployed and pushed.
