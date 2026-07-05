@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Português — aprender com Takeo</title>
+<style>
+  :root {
+    --ground: #F3F5EE;
+    --card: #FFFFFF;
+    --card-back: #FBF8EC;
+    --ink: #26332B;
+    --muted: #6F7D72;
+    --verde: #1B7A4B;
+    --verde-deep: #135A37;
+    --amarelo: #E5A814;
+    --amarelo-deep: #B8860B;
+    --wrong: #C4453C;
+    --right-bg: #DCEFE3;
+    --wrong-bg: #F6DDDB;
+    --shadow: rgba(38, 51, 43, 0.14);
+    --shadow-soft: rgba(38, 51, 43, 0.08);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ground: #14201A;
+      --card: #1E2C24;
+      --card-back: #24332A;
+      --ink: #E8EEE8;
+      --muted: #93A398;
+      --verde: #3FA76F;
+      --verde-deep: #2C7A50;
+      --amarelo: #E5B542;
+      --amarelo-deep: #C09329;
+      --wrong: #E06A61;
+      --right-bg: #23483330;
+      --right-bg: #234833;
+      --wrong-bg: #4A2A27;
+      --shadow: rgba(0, 0, 0, 0.4);
+      --shadow-soft: rgba(0, 0, 0, 0.25);
+    }
+  }
+  :root[data-theme="light"] {
+    --ground: #F3F5EE; --card: #FFFFFF; --card-back: #FBF8EC;
+    --ink: #26332B; --muted: #6F7D72;
+    --verde: #1B7A4B; --verde-deep: #135A37;
+    --amarelo: #E5A814; --amarelo-deep: #B8860B;
+    --wrong: #C4453C; --right-bg: #DCEFE3; --wrong-bg: #F6DDDB;
+    --shadow: rgba(38, 51, 43, 0.14); --shadow-soft: rgba(38, 51, 43, 0.08);
+  }
+  :root[data-theme="dark"] {
+    --ground: #14201A; --card: #1E2C24; --card-back: #24332A;
+    --ink: #E8EEE8; --muted: #93A398;
+    --verde: #3FA76F; --verde-deep: #2C7A50;
+    --amarelo: #E5B542; --amarelo-deep: #C09329;
+    --wrong: #E06A61; --right-bg: #234833; --wrong-bg: #4A2A27;
+    --shadow: rgba(0, 0, 0, 0.4); --shadow-soft: rgba(0, 0, 0, 0.25);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body {
+    font-family: "Segoe UI", -apple-system, "Hiragino Sans", "Yu Gothic", sans-serif;
+    background: var(--ground); color: var(--ink);
+    display: flex; justify-content: center; min-height: 100vh;
+    font-size: 18px; line-height: 1.5;
+  }
+  .app { width: 100%; max-width: 580px; padding: 20px 16px 40px; }
+  button { font-family: inherit; color: inherit; cursor: pointer; }
+  button:focus-visible { outline: 3px solid var(--amarelo); outline-offset: 2px; }
+
+  /* ---------- Header ---------- */
+  header { text-align: center; margin-bottom: 18px; }
+  h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(30px, 7vw, 42px); color: var(--verde);
+    letter-spacing: 0.5px;
+  }
+  .tagline { color: var(--muted); font-size: 15px; margin-top: 2px; }
+
+  /* ---------- Tabs ---------- */
+  .tabs { display: flex; gap: 8px; margin-bottom: 20px; }
+  .tab {
+    flex: 1; padding: 12px 4px; border: none; border-radius: 14px;
+    background: var(--card); color: var(--muted); font-size: 17px; font-weight: 600;
+    box-shadow: 0 2px 0 var(--shadow-soft);
+  }
+  .tab.active { background: var(--verde); color: #fff; box-shadow: 0 3px 0 var(--verde-deep); }
+  .tab .badge {
+    display: inline-block; min-width: 24px; padding: 1px 7px; margin-left: 6px;
+    border-radius: 12px; background: var(--amarelo); color: #26332B; font-size: 14px;
+  }
+
+  /* ---------- Panels ---------- */
+  .panel { display: none; }
+  .panel.active { display: block; }
+  .hint { color: var(--muted); font-size: 16px; text-align: center; margin: 10px 0 16px; }
+
+  /* ---------- Category grid ---------- */
+  .cat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .cat-btn {
+    border: none; border-radius: 18px; padding: 18px 12px; text-align: left;
+    background: var(--card); box-shadow: 0 4px 12px var(--shadow-soft);
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .cat-btn:active { transform: translateY(2px); }
+  .cat-btn .icon { font-size: 30px; }
+  .cat-btn .name { font-size: 19px; font-weight: 700; }
+  .cat-btn .sub { font-size: 14px; color: var(--muted); }
+  .cat-btn.all { grid-column: 1 / -1; flex-direction: row; align-items: center; gap: 12px; }
+
+  /* ---------- Flashcard ---------- */
+  .study-top {
+    display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;
+  }
+  .back-btn {
+    border: none; background: var(--card); border-radius: 12px; padding: 10px 16px;
+    font-size: 16px; box-shadow: 0 2px 0 var(--shadow-soft);
+  }
+  .progress { color: var(--muted); font-size: 16px; font-variant-numeric: tabular-nums; }
+  .flashcard {
+    width: 100%; min-height: 300px; border: none; border-radius: 24px;
+    background: var(--card); box-shadow: 0 10px 26px var(--shadow);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 14px; padding: 28px 20px; text-align: center;
+  }
+  .flashcard.revealed { background: var(--card-back); }
+  .pt-word {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(34px, 8vw, 52px); color: var(--ink); text-wrap: balance;
+  }
+  .meanings { display: none; flex-direction: column; gap: 6px; }
+  .flashcard.revealed .meanings { display: flex; }
+  .meaning-en { font-size: 24px; font-weight: 600; }
+  .meaning-ja { font-size: 22px; color: var(--muted); }
+  .tap-hint { font-size: 15px; color: var(--muted); }
+  .flashcard.revealed .tap-hint { display: none; }
+
+  .audio-row { display: flex; gap: 12px; justify-content: center; margin: 14px 0; }
+  .audio-btn {
+    border: none; border-radius: 14px; padding: 12px 22px; font-size: 18px;
+    background: var(--card); box-shadow: 0 3px 0 var(--shadow-soft);
+  }
+  .grade-row { display: flex; gap: 12px; }
+  .grade-btn {
+    flex: 1; border: none; border-radius: 16px; padding: 16px 8px;
+    font-size: 18px; font-weight: 700; color: #fff;
+  }
+  .grade-hard { background: var(--wrong); box-shadow: 0 4px 0 #8F2F28; }
+  .grade-easy { background: var(--verde); box-shadow: 0 4px 0 var(--verde-deep); }
+  .grade-btn small { display: block; font-weight: 400; font-size: 13px; opacity: 0.85; }
+  .grade-btn:active { transform: translateY(2px); }
+
+  .done-box { text-align: center; padding: 50px 20px; }
+  .done-box .big { font-size: 54px; margin-bottom: 10px; }
+  .done-box p { color: var(--muted); margin-top: 6px; }
+
+  /* ---------- Quiz ---------- */
+  .quiz-q {
+    background: var(--card); border-radius: 20px; padding: 24px 18px; text-align: center;
+    box-shadow: 0 6px 18px var(--shadow-soft); margin-bottom: 16px;
+  }
+  .quiz-q .pt-word { font-size: clamp(26px, 6vw, 38px); }
+  .quiz-q .ask { color: var(--muted); font-size: 15px; margin-bottom: 6px; }
+  .options { display: flex; flex-direction: column; gap: 10px; }
+  .option {
+    border: none; border-radius: 14px; padding: 16px 14px; font-size: 19px;
+    background: var(--card); box-shadow: 0 3px 0 var(--shadow-soft); text-align: left;
+  }
+  .option .ja-small { color: var(--muted); font-size: 15px; margin-left: 8px; }
+  .option.right { background: var(--right-bg); }
+  .option.wrongpick { background: var(--wrong-bg); }
+  .quiz-score { text-align: center; color: var(--muted); margin-top: 14px; font-variant-numeric: tabular-nums; }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; animation: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>Português 🇧🇷</h1>
+    <div class="tagline">Brazilian Portuguese for Takeo — 毎日すこしずつ</div>
+  </header>
+
+  <div class="tabs">
+    <button class="tab active" data-tab="learn">Learn<br><small>学ぶ</small></button>
+    <button class="tab" data-tab="review">Review<span class="badge" id="due-badge">0</span><br><small>復習</small></button>
+    <button class="tab" data-tab="quiz">Quiz<br><small>テスト</small></button>
+  </div>
+
+  <!-- LEARN: pick category -->
+  <div class="panel active" id="panel-learn">
+    <p class="hint">Choose a topic. Tap a card to hear it and reveal the meaning.<br>カードをタップすると発音と意味が出ます。</p>
+    <div class="cat-grid" id="learn-cats"></div>
+  </div>
+
+  <!-- REVIEW -->
+  <div class="panel" id="panel-review"></div>
+
+  <!-- QUIZ: pick category -->
+  <div class="panel" id="panel-quiz">
+    <p class="hint">10 questions. Wrong answers come back in Review.<br>間違えた単語は復習に戻ります。</p>
+    <div class="cat-grid" id="quiz-cats"></div>
+  </div>
+
+  <!-- STUDY (flashcards) -->
+  <div class="panel" id="panel-study">
+    <div class="study-top">
+      <button class="back-btn" id="study-back">← Back</button>
+      <div class="progress" id="study-progress"></div>
+    </div>
+    <button class="flashcard" id="flashcard">
+      <div class="pt-word" id="fc-pt"></div>
+      <div class="meanings">
+        <div class="meaning-en" id="fc-en"></div>
+        <div class="meaning-ja" id="fc-ja"></div>
+      </div>
+      <div class="tap-hint">tap to reveal ▾</div>
+    </button>
+    <div class="audio-row">
+      <button class="audio-btn" id="fc-say">🔊 Ouvir</button>
+      <button class="audio-btn" id="fc-slow">🐢 Devagar (slow)</button>
+    </div>
+    <div class="grade-row">
+      <button class="grade-btn grade-hard" id="grade-hard">むずかしい<small>Hard — see it again soon</small></button>
+      <button class="grade-btn grade-easy" id="grade-easy">おぼえた！<small>Easy — wait longer</small></button>
+    </div>
+  </div>
+
+  <!-- QUIZ PLAY -->
+  <div class="panel" id="panel-quizplay">
+    <div class="study-top">
+      <button class="back-btn" id="quiz-back">← Back</button>
+      <div class="progress" id="quiz-progress"></div>
+    </div>
+    <div class="quiz-q">
+      <div class="ask" id="q-ask"></div>
+      <div class="pt-word" id="q-word"></div>
+    </div>
+    <div class="options" id="q-options"></div>
+    <div class="quiz-score" id="q-score"></div>
+  </div>
+</div>
+
+<script>
+// Words are loaded from the portuguese_words table in Supabase (see schema.sql).
+// The list below is the fallback when the database is unreachable.
+const SUPABASE_URL = 'https://pujgfojebzyetxypwytg.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB1amdmb2plYnp5ZXR4eXB3eXRnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzUzNDcwOTcsImV4cCI6MjA5MDkyMzA5N30.VaDkMTOy7R6Cbip9hMh1ZmoBtDoAUZckylJCmYD4k4k';
+
+const CATS = [
+  { key: "cumprimentos", icon: "👋", name: "Greetings", sub: "あいさつ" },
+  { key: "numeros",      icon: "🔢", name: "Numbers",   sub: "数字" },
+  { key: "comida",       icon: "🍽️", name: "Food",      sub: "食べ物" },
+  { key: "viagem",       icon: "✈️", name: "Travel",    sub: "旅行" },
+  { key: "frases",       icon: "💬", name: "Phrases",   sub: "便利なフレーズ" },
+];
+
+let WORDS = {
+  cumprimentos: [
+    { pt: "Oi",            en: "Hi",                 ja: "やあ" },
+    { pt: "Bom dia",       en: "Good morning",       ja: "おはよう" },
+    { pt: "Boa tarde",     en: "Good afternoon",     ja: "こんにちは" },
+    { pt: "Boa noite",     en: "Good evening / night", ja: "こんばんは" },
+    { pt: "Tudo bem?",     en: "How are you?",       ja: "元気ですか？" },
+    { pt: "Obrigado",      en: "Thank you",          ja: "ありがとう" },
+    { pt: "Por favor",     en: "Please",             ja: "お願いします" },
+    { pt: "Desculpa",      en: "Sorry",              ja: "ごめんなさい" },
+    { pt: "Tchau",         en: "Bye",                ja: "じゃあね" },
+    { pt: "Prazer em conhecer", en: "Nice to meet you", ja: "はじめまして" },
+  ],
+  numeros: [
+    { pt: "um",     en: "one",   ja: "一" },
+    { pt: "dois",   en: "two",   ja: "二" },
+    { pt: "três",   en: "three", ja: "三" },
+    { pt: "quatro", en: "four",  ja: "四" },
+    { pt: "cinco",  en: "five",  ja: "五" },
+    { pt: "seis",   en: "six",   ja: "六" },
+    { pt: "sete",   en: "seven", ja: "七" },
+    { pt: "oito",   en: "eight", ja: "八" },
+    { pt: "nove",   en: "nine",  ja: "九" },
+    { pt: "dez",    en: "ten",   ja: "十" },
+  ],
+  comida: [
+    { pt: "água",    en: "water",   ja: "水" },
+    { pt: "café",    en: "coffee",  ja: "コーヒー" },
+    { pt: "pão",     en: "bread",   ja: "パン" },
+    { pt: "arroz",   en: "rice",    ja: "ご飯" },
+    { pt: "feijão",  en: "beans",   ja: "豆" },
+    { pt: "carne",   en: "meat",    ja: "肉" },
+    { pt: "frango",  en: "chicken", ja: "鶏肉" },
+    { pt: "peixe",   en: "fish",    ja: "魚" },
+    { pt: "fruta",   en: "fruit",   ja: "果物" },
+    { pt: "cerveja", en: "beer",    ja: "ビール" },
+  ],
+  viagem: [
+    { pt: "aeroporto",     en: "airport",      ja: "空港" },
+    { pt: "hotel",         en: "hotel",        ja: "ホテル" },
+    { pt: "banheiro",      en: "bathroom",     ja: "トイレ" },
+    { pt: "ônibus",        en: "bus",          ja: "バス" },
+    { pt: "táxi",          en: "taxi",         ja: "タクシー" },
+    { pt: "praia",         en: "beach",        ja: "ビーチ" },
+    { pt: "dinheiro",      en: "money",        ja: "お金" },
+    { pt: "Quanto custa?", en: "How much is it?", ja: "いくらですか？" },
+    { pt: "Onde fica o banheiro?", en: "Where is the bathroom?", ja: "トイレはどこですか？" },
+    { pt: "ajuda",         en: "help",         ja: "助け" },
+  ],
+  frases: [
+    { pt: "Eu não entendo",     en: "I don't understand",      ja: "わかりません" },
+    { pt: "Fala inglês?",       en: "Do you speak English?",   ja: "英語を話せますか？" },
+    { pt: "Meu nome é Takeo",   en: "My name is Takeo",        ja: "私の名前はタケオです" },
+    { pt: "Pode repetir?",      en: "Can you repeat?",         ja: "もう一度お願いします" },
+    { pt: "Eu sou do Japão",    en: "I am from Japan",         ja: "日本から来ました" },
+    { pt: "Quero isso",         en: "I want this",             ja: "これがほしいです" },
+    { pt: "A conta, por favor", en: "The check, please",       ja: "お会計お願いします" },
+    { pt: "Está bom",           en: "It's good / OK",          ja: "いいですね" },
+  ],
+};
+
+async function loadWordsFromDb() {
+  try {
+    const res = await fetch(
+      SUPABASE_URL + "/rest/v1/portuguese_words?select=category,pt,en,ja&order=category,sort_order",
+      { headers: { apikey: SUPABASE_KEY, Authorization: "Bearer " + SUPABASE_KEY } }
+    );
+    if (!res.ok) return;
+    const rows = await res.json();
+    const byCat = {};
+    for (const r of rows) {
+      if (!r.category || !r.pt) continue;
+      (byCat[r.category] = byCat[r.category] || []).push({ pt: r.pt, en: r.en || "", ja: r.ja || "" });
+    }
+    for (const c of Object.keys(byCat)) {
+      if (WORDS[c] && byCat[c].length >= 4) WORDS[c] = byCat[c];
+    }
+    renderCatGrids();
+    updateDueBadge();
+  } catch (e) { /* offline — keep built-in words */ }
+}
+loadWordsFromDb();
+
+// ---------- speech (pt-BR) ----------
+let ptVoice = null;
+function pickVoice() {
+  const voices = speechSynthesis.getVoices();
+  ptVoice = voices.find(v => v.lang.replace("_", "-").toLowerCase() === "pt-br")
+         || voices.find(v => v.lang.toLowerCase().startsWith("pt"))
+         || null;
+}
+if ("speechSynthesis" in window) {
+  pickVoice();
+  speechSynthesis.onvoiceschanged = pickVoice;
+}
+let speechUnlocked = false;
+function unlockSpeech() {
+  if (speechUnlocked || !("speechSynthesis" in window)) return;
+  speechUnlocked = true;
+  const u = new SpeechSynthesisUtterance(" ");
+  u.volume = 0;
+  speechSynthesis.speak(u);
+}
+document.addEventListener("pointerdown", unlockSpeech, { once: true, capture: true });
+document.addEventListener("touchstart", unlockSpeech, { once: true, capture: true });
+
+function speak(text, rate) {
+  if (!("speechSynthesis" in window)) return;
+  speechSynthesis.cancel();
+  if (!ptVoice) pickVoice();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = "pt-BR";
+  if (ptVoice) u.voice = ptVoice;
+  u.rate = rate || 0.85;
+  setTimeout(() => { speechSynthesis.resume(); speechSynthesis.speak(u); }, 80);
+}
+
+// ---------- spaced repetition (Leitner boxes, saved on this device) ----------
+const DAY = 86400000;
+const INTERVALS = [0, 1, 3, 7, 14, 30]; // days until next review, by box
+function loadSrs() {
+  try { return JSON.parse(localStorage.getItem("pt_srs") || "{}"); }
+  catch (e) { return {}; }
+}
+function saveSrs(s) { localStorage.setItem("pt_srs", JSON.stringify(s)); }
+function grade(word, ok) {
+  const s = loadSrs();
+  const rec = s[word.pt] || { b: 0 };
+  rec.b = ok ? Math.min(rec.b + 1, INTERVALS.length - 1) : 0;
+  rec.d = Date.now() + INTERVALS[rec.b] * DAY;
+  s[word.pt] = rec;
+  saveSrs(s);
+  updateDueBadge();
+}
+function allWords() {
+  return Object.values(WORDS).flat();
+}
+function dueWords() {
+  const s = loadSrs();
+  const now = Date.now();
+  // due = studied before and its wait time has passed
+  return allWords().filter(w => s[w.pt] && s[w.pt].d <= now);
+}
+function updateDueBadge() {
+  document.getElementById("due-badge").textContent = dueWords().length;
+}
+
+// ---------- tabs & panels ----------
+function showPanel(id) {
+  document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+}
+document.querySelectorAll(".tab").forEach(t => t.addEventListener("click", () => {
+  document.querySelectorAll(".tab").forEach(x => x.classList.remove("active"));
+  t.classList.add("active");
+  speechSynthesis.cancel();
+  const tab = t.dataset.tab;
+  if (tab === "learn") showPanel("panel-learn");
+  if (tab === "quiz") showPanel("panel-quiz");
+  if (tab === "review") startReview();
+}));
+
+// ---------- category grids ----------
+function catButton(cat, count, onclick) {
+  const b = document.createElement("button");
+  b.className = "cat-btn";
+  b.innerHTML = '<span class="icon">' + cat.icon + '</span><span class="name">' + cat.name +
+                '</span><span class="sub">' + cat.sub + " · " + count + " words</span>";
+  b.addEventListener("click", onclick);
+  return b;
+}
+function renderCatGrids() {
+  const learn = document.getElementById("learn-cats");
+  const quiz = document.getElementById("quiz-cats");
+  learn.innerHTML = ""; quiz.innerHTML = "";
+  for (const cat of CATS) {
+    const n = (WORDS[cat.key] || []).length;
+    learn.appendChild(catButton(cat, n, () => startLearn(cat.key)));
+    quiz.appendChild(catButton(cat, n, () => startQuiz(WORDS[cat.key])));
+  }
+  const all = document.createElement("button");
+  all.className = "cat-btn all";
+  all.innerHTML = '<span class="icon">🇧🇷</span><span><span class="name">Everything mixed</span> <span class="sub">全部ミックス · ' + allWords().length + ' words</span></span>';
+  all.addEventListener("click", () => startQuiz(allWords()));
+  quiz.appendChild(all);
+}
+
+// ---------- flashcard study (Learn & Review share this) ----------
+let studyQueue = [];
+let studyIndex = 0;
+let studyReturnTab = "learn";
+
+function startLearn(catKey) {
+  studyQueue = WORDS[catKey].slice();
+  studyIndex = 0;
+  studyReturnTab = "learn";
+  showPanel("panel-study");
+  renderStudyCard();
+}
+function startReview() {
+  const due = shuffle(dueWords());
+  if (due.length === 0) {
+    document.getElementById("panel-review").innerHTML =
+      '<div class="done-box"><div class="big">🎉</div><b>Nothing to review right now!</b>' +
+      '<p>今日の復習は終わりです。Learn で新しい単語をどうぞ。<br>Words come back here when it is time to remember them again.</p></div>';
+    showPanel("panel-review");
+    return;
+  }
+  studyQueue = due;
+  studyIndex = 0;
+  studyReturnTab = "review";
+  showPanel("panel-study");
+  renderStudyCard();
+}
+function renderStudyCard() {
+  if (studyIndex >= studyQueue.length) {
+    const isReview = studyReturnTab === "review";
+    document.getElementById("panel-review").innerHTML =
+      '<div class="done-box"><div class="big">👏</div><b>' +
+      (isReview ? "Review finished — muito bem!" : "Topic finished — parabéns!") +
+      '</b><p>' + studyQueue.length + ' cards done. おつかれさまでした！</p></div>';
+    showPanel("panel-review");
+    updateDueBadge();
+    return;
+  }
+  const w = studyQueue[studyIndex];
+  document.getElementById("fc-pt").textContent = w.pt;
+  document.getElementById("fc-en").textContent = w.en;
+  document.getElementById("fc-ja").textContent = w.ja;
+  document.getElementById("flashcard").classList.remove("revealed");
+  document.getElementById("study-progress").textContent = (studyIndex + 1) + " / " + studyQueue.length;
+  speak(w.pt);
+}
+document.getElementById("flashcard").addEventListener("click", () => {
+  const card = document.getElementById("flashcard");
+  const w = studyQueue[studyIndex];
+  if (!card.classList.contains("revealed")) {
+    card.classList.add("revealed");
+  }
+  speak(w.pt);
+});
+document.getElementById("fc-say").addEventListener("click", () => speak(studyQueue[studyIndex].pt));
+document.getElementById("fc-slow").addEventListener("click", () => speak(studyQueue[studyIndex].pt, 0.55));
+document.getElementById("grade-hard").addEventListener("click", () => {
+  grade(studyQueue[studyIndex], false);
+  studyIndex++;
+  renderStudyCard();
+});
+document.getElementById("grade-easy").addEventListener("click", () => {
+  grade(studyQueue[studyIndex], true);
+  studyIndex++;
+  renderStudyCard();
+});
+document.getElementById("study-back").addEventListener("click", () => {
+  speechSynthesis.cancel();
+  showPanel(studyReturnTab === "review" ? "panel-review" : "panel-learn");
+  if (studyReturnTab === "review") startReview();
+});
+
+// ---------- quiz ----------
+let quizPool = [], quizQs = [], quizIndex = 0, quizRight = 0, quizLocked = false;
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+function startQuiz(pool) {
+  quizPool = pool.slice();
+  quizQs = shuffle(quizPool).slice(0, 10);
+  quizIndex = 0; quizRight = 0;
+  showPanel("panel-quizplay");
+  renderQuizQ();
+}
+function renderQuizQ() {
+  if (quizIndex >= quizQs.length) {
+    const pct = Math.round(100 * quizRight / quizQs.length);
+    const cheer = pct === 100 ? "Perfeito! 💯" : pct >= 70 ? "Muito bem! 👏" : "Bom começo — keep going! 💪";
+    document.getElementById("panel-review").innerHTML =
+      '<div class="done-box"><div class="big">' + (pct >= 70 ? "🌟" : "📚") + '</div><b>' +
+      quizRight + " / " + quizQs.length + " correct — " + cheer +
+      '</b><p>間違えた単語は Review に入りました。</p></div>';
+    showPanel("panel-review");
+    updateDueBadge();
+    return;
+  }
+  quizLocked = false;
+  const w = quizQs[quizIndex];
+  const toPt = Math.random() < 0.5; // half the time: meaning -> Portuguese
+  const others = shuffle(quizPool.filter(x => x.pt !== w.pt)).slice(0, 3);
+  const options = shuffle([w, ...others]);
+
+  document.getElementById("quiz-progress").textContent = (quizIndex + 1) + " / " + quizQs.length;
+  document.getElementById("q-score").textContent = "Score: " + quizRight;
+  const ask = document.getElementById("q-ask");
+  const word = document.getElementById("q-word");
+  const box = document.getElementById("q-options");
+  box.innerHTML = "";
+
+  if (toPt) {
+    ask.textContent = "Which is Portuguese for … どれがポルトガル語？";
+    word.textContent = w.en + "（" + w.ja + "）";
+    options.forEach(o => {
+      const b = document.createElement("button");
+      b.className = "option";
+      b.textContent = o.pt;
+      b.addEventListener("click", () => answer(b, o, w));
+      box.appendChild(b);
+    });
+  } else {
+    ask.textContent = "What does it mean? 意味は？";
+    word.textContent = w.pt;
+    speak(w.pt);
+    options.forEach(o => {
+      const b = document.createElement("button");
+      b.className = "option";
+      b.innerHTML = o.en + '<span class="ja-small">' + o.ja + "</span>";
+      b.addEventListener("click", () => answer(b, o, w));
+      box.appendChild(b);
+    });
+  }
+}
+function answer(btn, picked, correct) {
+  if (quizLocked) return;
+  quizLocked = true;
+  const ok = picked.pt === correct.pt;
+  if (ok) { quizRight++; btn.classList.add("right"); }
+  else {
+    btn.classList.add("wrongpick");
+    document.querySelectorAll("#q-options .option").forEach(b => {
+      if (b.textContent.startsWith(correct.pt) || b.innerHTML.startsWith(correct.en)) b.classList.add("right");
+    });
+  }
+  grade(correct, ok);
+  speak(correct.pt);
+  quizIndex++;
+  setTimeout(renderQuizQ, ok ? 1300 : 2400);
+}
+document.getElementById("quiz-back").addEventListener("click", () => {
+  speechSynthesis.cancel();
+  showPanel("panel-quiz");
+});
+
+// ---------- init ----------
+renderCatGrids();
+updateDueBadge();
+</script>
+</body>
+</html>

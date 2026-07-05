@@ -25,7 +25,8 @@
 <h1>🔊 Voice Test</h1>
 <button id="test-en">1️⃣ Speak English: "Hello, this is a test"</button>
 <button id="test-ja" class="jp">2️⃣ Speak Japanese: 「こんにちは、ねこ」</button>
-<button id="list-voices" style="background:#888">3️⃣ Show available voices</button>
+<button id="test-pt" style="background:#1b7a4b">3️⃣ Speak Portuguese: "Bom dia, tudo bem?"</button>
+<button id="list-voices" style="background:#888">4️⃣ Show available voices</button>
 <div id="log">Tap the buttons above. Results appear here.</div>
 <script>
 const log = document.getElementById("log");
@@ -58,6 +59,7 @@ function speakTest(text, lang) {
 
 document.getElementById("test-en").addEventListener("click", () => speakTest("Hello, this is a test.", "en-US"));
 document.getElementById("test-ja").addEventListener("click", () => speakTest("こんにちは、ねこ", "ja-JP"));
+document.getElementById("test-pt").addEventListener("click", () => speakTest("Bom dia, tudo bem?", "pt-BR"));
 document.getElementById("list-voices").addEventListener("click", () => {
   const all = voices();
   line("Total voices: " + all.length, all.length ? "info" : "bad");

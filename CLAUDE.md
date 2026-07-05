@@ -17,6 +17,7 @@ This repo contains two sub-projects:
 - **`Yasuhiro_ROTH_IRA/`** — Research and documentation related to Roth IRA for Yasuhiro (not deployed)
 - **`translate_english_portuguese/`** — Research and documentation for translating content between English and Portuguese (not deployed)
 - **`japanese_game_for_kids/`** — Browser game for a 3-year-old to learn Japanese vocabulary; source of truth for the game. Deployed via a copy at `weekly_reports/japanese_game/index.html`, served by the same Vercel project at the `/japanese_game/` path
+- **`portuguese_game/`** — Brazilian Portuguese learning app for Takeo (adult, spaced repetition, EN+JA meanings); source of truth for the app. Deployed via a copy at `weekly_reports/portuguese_game/index.html`, served at the `/portuguese_game/` path
 
 ## Instructions for Each Project Directory
 
@@ -29,4 +30,4 @@ This repo contains two sub-projects:
 - **Hosting:** Vercel, connected to the `jpokemon01/claude` GitHub repo (`main` branch)
 - **Root Directory:** Set to `weekly_reports` in the Vercel project settings (not via `vercel.json`)
 - Pushing to `main` triggers an automatic redeploy
-- **Database:** Supabase project `takeo-apps` at `https://pujgfojebzyetxypwytg.supabase.co` — one shared database serving multiple apps: `reports` table (weekly_reports) and `japanese_words` table (japanese_game_for_kids)
+- **Database:** Supabase project `takeo-apps` at `https://pujgfojebzyetxypwytg.supabase.co` — one shared database serving multiple apps: `reports` table (weekly_reports), `japanese_words` table (japanese_game_for_kids), and `portuguese_words` table (portuguese_game)

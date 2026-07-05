@@ -87,3 +87,7 @@ Game design:
 **Takeo:** I installed Japanese to my phone and worked
 
 **Claude:** Confirmed resolved — installing the Japanese voice pack fixed speech on the phone. Noted for the future: every Android device needs Japanese TTS voice data installed once (iOS devices usually include it); the diagnostic page stays at /japanese_game/voice-test.html.
+
+**Takeo:** I have no problem of my PC because I install Japanese package? If different PC does not install Japanese, you can not use this game?
+
+**Claude:** Clarified the split: the game itself (text, pictures, quiz) works on any device with no installation — only the *voice* depends on the device's installed Japanese text-to-speech voice. Without it the game still runs but silently. Windows PCs often speak Japanese out of the box (browser online voices), Android needs the one-time voice download, iOS includes Japanese. Any device can be checked via voice-test.html button 2.
