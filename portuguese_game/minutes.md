@@ -40,3 +40,7 @@ Conversation log between Takeo and Claude for the portuguese_game project.
 **Takeo:** delete all from FOOD and put new words. Also delete all except praia and put more for TRAVEL
 
 **Claude:** Food fully replaced (13 items): meals (o café da manhã, o almoço, o jantar), Brazilian dishes (o churrasco, a feijoada), restaurant items (o suco de laranja, a sobremesa, o legume, o queijo, o açúcar, o sal) and two phrases (Está delicioso!, Estou com fome). Travel: kept only a praia, added 11 (a passagem, o voo, a mala, o passaporte, a reserva, o câmbio, a diária, plus phrases Que horas sai o ônibus?, Pode me levar ao hotel?, É longe daqui?, Estou perdido). New nouns include the article (o/a) to teach gender. Breakdown notes on all multi-word items and word-origin hints (voo←voar, diária←dia). Updated index.html + schema.sql, deployed and pushed.
+
+**Takeo:** would you update Supabase and GITHUB?
+
+**Claude:** GitHub already up to date (through commit 20a08c1). Checked Supabase via REST: `japanese_words` exists (25 rows) but `portuguese_words` was never created — the Portuguese app has been running on fallback words. Only Takeo can run DDL, so gave the steps: paste `portuguese_game/schema.sql` into the SQL Editor and Run (safe to re-run; rebuilds word list, progress unaffected). Will verify row counts afterward.
