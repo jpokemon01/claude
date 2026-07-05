@@ -36,3 +36,7 @@ Conversation log between Takeo and Claude for the portuguese_game project.
 **Takeo:** would you add for WEEK and monday, tuesday, --- sunday
 
 **Claude:** Added a new **semana（📅 Week）** category with 12 items: a semana, the 7 days (segunda-feira…domingo), o fim de semana, hoje, amanhã, ontem. Breakdown notes explain the numbered-weekday system (segunda = 2nd + feira = market day, counted from Sunday; quarta/quinta/sexta share roots with quatro/cinco/seis; sábado and domingo are non-numeric, from Sabbath / dies Dominicus). Updated index.html, schema.sql (constraint + seeds), and CLAUDE.md. Deployed and pushed.
+
+**Takeo:** delete all from FOOD and put new words. Also delete all except praia and put more for TRAVEL
+
+**Claude:** Food fully replaced (13 items): meals (o café da manhã, o almoço, o jantar), Brazilian dishes (o churrasco, a feijoada), restaurant items (o suco de laranja, a sobremesa, o legume, o queijo, o açúcar, o sal) and two phrases (Está delicioso!, Estou com fome). Travel: kept only a praia, added 11 (a passagem, o voo, a mala, o passaporte, a reserva, o câmbio, a diária, plus phrases Que horas sai o ônibus?, Pode me levar ao hotel?, É longe daqui?, Estou perdido). New nouns include the article (o/a) to teach gender. Breakdown notes on all multi-word items and word-origin hints (voo←voar, diária←dia). Updated index.html + schema.sql, deployed and pushed.
