@@ -16,3 +16,7 @@ Conversation log between Takeo and Claude for the portuguese_game project.
 - 48 starter words/phrases in 5 categories: cumprimentos (greetings), numeros, comida, viagem, frases
 - Same architecture as the Japanese game: served at `/portuguese_game/` on the Vercel domain, words in a `portuguese_words` Supabase table (`schema.sql` to run once in the SQL Editor), embedded fallback for offline
 - Progress (spaced repetition) is stored per device in localStorage
+
+**Takeo:** Thank you. It was a little easy for me. would you set up more dificult words and sentences?
+
+**Claude:** Added three advanced categories (38 new items, 86 total): **verbos** (14 core verbs: ser/estar/ter/fazer…), **conversa** (10 full sentences: Onde você mora?, Pode falar mais devagar?…), and **negocios** (14 business/trade terms chosen for the Brazil trade company: alfândega, exportação, fatura, prazo de entrega, Vamos fechar o negócio…). Updated `schema.sql` (fresh install) and added `add_advanced_words.sql` (upgrade if the table already exists — updates category constraint and inserts the new rows). Deployed and pushed.

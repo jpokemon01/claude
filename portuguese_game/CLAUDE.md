@@ -11,7 +11,7 @@ A browser-based Brazilian Portuguese learning app for Takeo (adult learner, flue
 - **Learn** — flashcards by category: Portuguese word spoken aloud (pt-BR Web Speech), tap to reveal EN + JA meanings, grade yourself Hard/Easy
 - **Review** — spaced repetition (Leitner boxes, intervals 1/3/7/14/30 days); Hard or wrong answers reset a word to frequent review. Progress stored in `localStorage` per device
 - **Quiz** — 10 questions, 4 choices, both directions (PT→meaning and meaning→PT); wrong answers feed back into Review
-- Categories: cumprimentos (greetings), numeros, comida (food), viagem (travel), frases (phrases)
+- Categories — basic: cumprimentos (greetings), numeros, comida (food), viagem (travel), frases (phrases); advanced: verbos (verbs), conversa (full sentences), negocios (business/trade vocabulary for the Brazil trade company)
 
 ## Deployment
 
@@ -21,7 +21,8 @@ Served by the weekly_reports Vercel project via a copy at `weekly_reports/portug
 
 Words live in the `portuguese_words` table in the shared Supabase project `takeo-apps` (`https://pujgfojebzyetxypwytg.supabase.co`). Schema and seed data: `schema.sql` (run once in the Supabase SQL Editor).
 
-- Columns: `category` (cumprimentos/numeros/comida/viagem/frases), `pt`, `en`, `ja`, `sort_order`
+- Columns: `category` (cumprimentos/numeros/comida/viagem/frases/verbos/conversa/negocios), `pt`, `en`, `ja`, `sort_order`
+- `schema.sql` = full fresh install; `add_advanced_words.sql` = upgrade for a table created before the advanced categories existed (updates the category check constraint, inserts the new rows)
 - RLS enabled, public read-only policy; game fetches with the anon key, falls back to the embedded word list when offline
 - Add/edit words in the Supabase Table Editor; keep at least 4 words per category (quiz shows 4 choices)
 - Spaced-repetition progress is keyed by the `pt` text — renaming a word's `pt` resets its review history
