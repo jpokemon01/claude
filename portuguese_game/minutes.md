@@ -28,3 +28,7 @@ Conversation log between Takeo and Claude for the portuguese_game project.
 **Takeo:** would you do the same for Phrase and Conversation like Greeting for each word explain
 
 **Claude:** Added word-by-word breakdown notes to every sentence in Phrases and Conversation (plus the two travel phrases and "Vamos fechar o negócio") in the app's built-in fallback words, matching what schema.sql already seeds — with JA glosses and verb-conjugation hints (e.g. "morar の活用"). Deployed and pushed.
+
+**Takeo:** you forgot to do for prazo de entrega in BUSINESS
+
+**Claude:** Added the missing breakdown for "prazo de entrega" (prazo = deadline（期限） / de = of / entrega = delivery（納品）, from entregar) in both index.html and schema.sql. Deployed and pushed.
