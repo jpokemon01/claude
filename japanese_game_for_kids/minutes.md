@@ -79,3 +79,11 @@ Game design:
 **Takeo:** I still have this problem. my phone is android
 
 **Claude:** Deployed a diagnostic page at /japanese_game/voice-test.html (tests English speech, Japanese speech, and lists installed voices with on-screen results) to pinpoint the cause. Suspects on Android: media volume at zero (separate from ring volume) or missing Japanese voice pack in Google Text-to-speech.
+
+**Takeo:** I got 2 is silent and error message is speech error : synthesis-failed
+
+**Claude:** Diagnosis confirmed — English speaks but Japanese fails with `synthesis-failed`: the phone's TTS engine lacks Japanese voice data. Fix on the phone: Settings → Text-to-speech output → engine gear icon → Install voice data → 日本語 (or install/update "Speech Recognition & Synthesis" from Play Store; on Samsung, either install Japanese in Samsung TTS or switch engine to Google). Then fully restart Chrome and retest.
+
+**Takeo:** I installed Japanese to my phone and worked
+
+**Claude:** Confirmed resolved — installing the Japanese voice pack fixed speech on the phone. Noted for the future: every Android device needs Japanese TTS voice data installed once (iOS devices usually include it); the diagnostic page stays at /japanese_game/voice-test.html.
