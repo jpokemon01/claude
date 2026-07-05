@@ -32,3 +32,7 @@ Conversation log between Takeo and Claude for the portuguese_game project.
 **Takeo:** you forgot to do for prazo de entrega in BUSINESS
 
 **Claude:** Added the missing breakdown for "prazo de entrega" (prazo = deadline（期限） / de = of / entrega = delivery（納品）, from entregar) in both index.html and schema.sql. Deployed and pushed.
+
+**Takeo:** would you add for WEEK and monday, tuesday, --- sunday
+
+**Claude:** Added a new **semana（📅 Week）** category with 12 items: a semana, the 7 days (segunda-feira…domingo), o fim de semana, hoje, amanhã, ontem. Breakdown notes explain the numbered-weekday system (segunda = 2nd + feira = market day, counted from Sunday; quarta/quinta/sexta share roots with quatro/cinco/seis; sábado and domingo are non-numeric, from Sabbath / dies Dominicus). Updated index.html, schema.sql (constraint + seeds), and CLAUDE.md. Deployed and pushed.
