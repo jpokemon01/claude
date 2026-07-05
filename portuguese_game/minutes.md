@@ -44,3 +44,9 @@ Conversation log between Takeo and Claude for the portuguese_game project.
 **Takeo:** would you update Supabase and GITHUB?
 
 **Claude:** GitHub already up to date (through commit 20a08c1). Checked Supabase via REST: `japanese_words` exists (25 rows) but `portuguese_words` was never created — the Portuguese app has been running on fallback words. Only Takeo can run DDL, so gave the steps: paste `portuguese_game/schema.sql` into the SQL Editor and Run (safe to re-run; rebuilds word list, progress unaffected). Will verify row counts afterward.
+
+## 2026-07-05
+
+**Takeo:** (Ran schema.sql — first attempt pasted the file *name* into the SQL Editor, got syntax error 42601; Claude explained to paste the file *contents*) I did it. would you confirm?
+
+**Claude:** Verified via REST: `portuguese_words` created with all 9 categories, 112 rows (cumprimentos 10, numeros 19, comida 13, viagem 12, frases 8, semana 12, verbos 14, conversa 10, negocios 14). The app is now database-driven; words editable in the Table Editor including the `note` column.
