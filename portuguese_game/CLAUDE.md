@@ -21,8 +21,8 @@ Served by the weekly_reports Vercel project via a copy at `weekly_reports/portug
 
 Words live in the `portuguese_words` table in the shared Supabase project `takeo-apps` (`https://pujgfojebzyetxypwytg.supabase.co`). Schema and seed data: `schema.sql` (run once in the Supabase SQL Editor).
 
-- Columns: `category` (cumprimentos/numeros/comida/viagem/frases/verbos/conversa/negocios), `pt`, `en`, `ja`, `sort_order`
-- `schema.sql` = full fresh install; `add_advanced_words.sql` = upgrade for a table created before the advanced categories existed (updates the category check constraint, inserts the new rows)
+- Columns: `category` (cumprimentos/numeros/comida/viagem/frases/verbos/conversa/negocios), `pt`, `en`, `ja`, `note` (optional word-by-word breakdown shown on the card back), `sort_order`
+- `schema.sql` drops and rebuilds the table with full seed data — safe to re-run anytime (learning progress lives in localStorage, not in this table)
 - RLS enabled, public read-only policy; game fetches with the anon key, falls back to the embedded word list when offline
 - Add/edit words in the Supabase Table Editor; keep at least 4 words per category (quiz shows 4 choices)
 - Spaced-repetition progress is keyed by the `pt` text — renaming a word's `pt` resets its review history

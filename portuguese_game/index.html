@@ -132,6 +132,11 @@
   .flashcard.revealed .meanings { display: flex; }
   .meaning-en { font-size: 24px; font-weight: 600; }
   .meaning-ja { font-size: 22px; color: var(--muted); }
+  .meaning-note {
+    font-size: 16px; color: var(--muted); line-height: 1.6;
+    margin-top: 10px; padding-top: 10px;
+    border-top: 1px dashed var(--muted); max-width: 46ch;
+  }
   .tap-hint { font-size: 15px; color: var(--muted); }
   .flashcard.revealed .tap-hint { display: none; }
 
@@ -215,6 +220,7 @@
       <div class="meanings">
         <div class="meaning-en" id="fc-en"></div>
         <div class="meaning-ja" id="fc-ja"></div>
+        <div class="meaning-note" id="fc-note"></div>
       </div>
       <div class="tap-hint">tap to reveal ▾</div>
     </button>
@@ -262,28 +268,47 @@ const CATS = [
 
 let WORDS = {
   cumprimentos: [
-    { pt: "Oi",            en: "Hi",                 ja: "やあ" },
-    { pt: "Bom dia",       en: "Good morning",       ja: "おはよう" },
-    { pt: "Boa tarde",     en: "Good afternoon",     ja: "こんにちは" },
-    { pt: "Boa noite",     en: "Good evening / night", ja: "こんばんは" },
-    { pt: "Tudo bem?",     en: "How are you?",       ja: "元気ですか？" },
-    { pt: "Obrigado",      en: "Thank you",          ja: "ありがとう" },
-    { pt: "Por favor",     en: "Please",             ja: "お願いします" },
-    { pt: "Desculpa",      en: "Sorry",              ja: "ごめんなさい" },
-    { pt: "Tchau",         en: "Bye",                ja: "じゃあね" },
-    { pt: "Prazer em conhecer", en: "Nice to meet you", ja: "はじめまして" },
+    { pt: "Prazer em conhecer", en: "Nice to meet you", ja: "はじめまして",
+      note: "prazer = pleasure（喜び） / em = in / conhecer = to know（知る） → “pleasure in knowing you”" },
+    { pt: "Como você está?", en: "How are you?", ja: "お元気ですか？",
+      note: "como = how / você = you / está = are（estar の活用）" },
+    { pt: "Como vai?", en: "How's it going?", ja: "調子はどうですか？",
+      note: "como = how / vai = goes（ir の活用） → “how goes it?”" },
+    { pt: "Há quanto tempo!", en: "Long time no see!", ja: "お久しぶりです！",
+      note: "há = it has been / quanto = how much / tempo = time（時間） → “it's been so much time!”" },
+    { pt: "Seja bem-vindo", en: "Welcome", ja: "ようこそ",
+      note: "seja = be（ser の命令形） / bem = well（よく） / vindo = come（来た） → “be well-come”" },
+    { pt: "Até logo", en: "See you soon", ja: "また後でね",
+      note: "até = until（〜まで） / logo = soon（すぐ）" },
+    { pt: "Até amanhã", en: "See you tomorrow", ja: "また明日",
+      note: "até = until（〜まで） / amanhã = tomorrow（明日）" },
+    { pt: "Bom fim de semana", en: "Have a good weekend", ja: "よい週末を",
+      note: "bom = good / fim = end（終わり） / de = of / semana = week（週） → “good end of week”" },
+    { pt: "Faz tempo que não te vejo", en: "I haven't seen you in a while", ja: "しばらく会っていませんでしたね",
+      note: "faz tempo = it's been a while / que = that / não te vejo = I don't see you（te = あなたを, vejo = 見る）" },
+    { pt: "Cuide-se", en: "Take care", ja: "気をつけてね・お大事に",
+      note: "cuidar = to take care（世話する） + se = yourself（自分を）" },
   ],
   numeros: [
-    { pt: "um",     en: "one",   ja: "一" },
-    { pt: "dois",   en: "two",   ja: "二" },
-    { pt: "três",   en: "three", ja: "三" },
-    { pt: "quatro", en: "four",  ja: "四" },
-    { pt: "cinco",  en: "five",  ja: "五" },
-    { pt: "seis",   en: "six",   ja: "六" },
-    { pt: "sete",   en: "seven", ja: "七" },
-    { pt: "oito",   en: "eight", ja: "八" },
-    { pt: "nove",   en: "nine",  ja: "九" },
-    { pt: "dez",    en: "ten",   ja: "十" },
+    { pt: "onze",      en: "eleven (11)",    ja: "十一" },
+    { pt: "doze",      en: "twelve (12)",    ja: "十二" },
+    { pt: "treze",     en: "thirteen (13)",  ja: "十三" },
+    { pt: "catorze",   en: "fourteen (14)",  ja: "十四" },
+    { pt: "quinze",    en: "fifteen (15)",   ja: "十五" },
+    { pt: "dezesseis", en: "sixteen (16)",   ja: "十六", note: "dez (10) + e (と) + seis (6)" },
+    { pt: "dezessete", en: "seventeen (17)", ja: "十七", note: "dez (10) + e (と) + sete (7)" },
+    { pt: "dezoito",   en: "eighteen (18)",  ja: "十八", note: "dez (10) + oito (8)" },
+    { pt: "dezenove",  en: "nineteen (19)",  ja: "十九", note: "dez (10) + nove (9)" },
+    { pt: "vinte",     en: "twenty (20)",    ja: "二十" },
+    { pt: "trinta",    en: "thirty (30)",    ja: "三十" },
+    { pt: "quarenta",  en: "forty (40)",     ja: "四十", note: "quatro (4) が語源" },
+    { pt: "cinquenta", en: "fifty (50)",     ja: "五十", note: "cinco (5) が語源" },
+    { pt: "sessenta",  en: "sixty (60)",     ja: "六十", note: "seis (6) が語源" },
+    { pt: "setenta",   en: "seventy (70)",   ja: "七十", note: "sete (7) が語源" },
+    { pt: "oitenta",   en: "eighty (80)",    ja: "八十", note: "oito (8) が語源" },
+    { pt: "noventa",   en: "ninety (90)",    ja: "九十", note: "nove (9) が語源" },
+    { pt: "cem",       en: "one hundred (100)", ja: "百" },
+    { pt: "mil",       en: "one thousand (1000)", ja: "千" },
   ],
   comida: [
     { pt: "água",    en: "water",   ja: "水" },
@@ -368,7 +393,7 @@ let WORDS = {
 async function loadWordsFromDb() {
   try {
     const res = await fetch(
-      SUPABASE_URL + "/rest/v1/portuguese_words?select=category,pt,en,ja&order=category,sort_order",
+      SUPABASE_URL + "/rest/v1/portuguese_words?select=category,pt,en,ja,note&order=category,sort_order",
       { headers: { apikey: SUPABASE_KEY, Authorization: "Bearer " + SUPABASE_KEY } }
     );
     if (!res.ok) return;
@@ -376,7 +401,7 @@ async function loadWordsFromDb() {
     const byCat = {};
     for (const r of rows) {
       if (!r.category || !r.pt) continue;
-      (byCat[r.category] = byCat[r.category] || []).push({ pt: r.pt, en: r.en || "", ja: r.ja || "" });
+      (byCat[r.category] = byCat[r.category] || []).push({ pt: r.pt, en: r.en || "", ja: r.ja || "", note: r.note || "" });
     }
     for (const c of Object.keys(byCat)) {
       if (WORDS[c] && byCat[c].length >= 4) WORDS[c] = byCat[c];
@@ -533,6 +558,9 @@ function renderStudyCard() {
   document.getElementById("fc-pt").textContent = w.pt;
   document.getElementById("fc-en").textContent = w.en;
   document.getElementById("fc-ja").textContent = w.ja;
+  const noteEl = document.getElementById("fc-note");
+  noteEl.textContent = w.note || "";
+  noteEl.style.display = w.note ? "" : "none";
   document.getElementById("flashcard").classList.remove("revealed");
   document.getElementById("study-progress").textContent = (studyIndex + 1) + " / " + studyQueue.length;
   speak(w.pt);
